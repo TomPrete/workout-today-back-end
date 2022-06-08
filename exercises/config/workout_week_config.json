@@ -1,0 +1,82 @@
+{
+  "0": [
+    {
+      "target": ["chest", "back"]
+    },
+    {
+      "target": ["shoulders", "biceps", "triceps"]
+    },
+    {
+      "target": ["back", "biceps"]
+    },
+    {
+      "target": ["shoulders", "chest", "triceps"]
+    }
+  ],
+  "1": [
+    {
+      "target": ["legs", "cardio"]
+    },
+    {
+      "target": ["cardio", "core"]
+    }
+  ],
+  "2": [
+    {
+      "target": ["chest", "back"]
+    },
+    {
+      "target": ["shoulders", "biceps", "triceps"]
+    },
+    {
+      "target": ["back", "biceps"]
+    },
+    {
+      "target": ["shoulders", "chest", "triceps"]
+    }
+  ],
+  "3": [
+    {
+      "target": ["legs", "cardio"]
+    },
+    {
+      "target": ["cardio", "core"]
+    },
+    {
+      "target": ["stretch"]
+    }
+  ],
+  "4": [
+    {
+      "target": ["legs", "back"]
+    },
+    {
+      "target": ["back", "biceps"]
+    },
+    {
+      "target": ["cardio", "core"]
+    },
+    {
+      "target": ["legs", "cardio"]
+    }
+  ],
+  "5": [
+    {
+      "target": ["stretch"]
+    },
+    {
+      "target": ["cardio"]
+    }
+  ],
+  "6": [
+    {
+      "target": ["cardio", "core"]
+    },
+    {
+      "target": ["core"]
+    },
+    {
+      "target": ["stretch"]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{% load static %}
+
+
+<h1>Home</h1>
+{% for exercise in exercise_list %}
+<div>
+  <p>ID: {{ exercise.id }}</p>
+  <p>Name: {{ exercise.name }}</p>
+  <p>Body Part: {{ exercise.bodyPart }}</p>
+  <p>Equipment: {{ exercise.equipment }}</p>
+  <p>Target: {{ exercise.target }}</p>
+  <img src="{{ exercise.gifUrl }}" alt="Here"  width="250" />
+</div>
+{% endfor %}
