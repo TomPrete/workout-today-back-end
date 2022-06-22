@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'exercises',
     'corsheaders',
+    'django_crontab',
 ]
 
 MIDDLEWARE = [
@@ -92,8 +93,8 @@ DATABASES = {
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
     "https://localhost:3000",
-    "https://workout-today.herokuapp.com/",
-    "http://workout-today.herokuapp.com/"
+    "https://workout-today.herokuapp.com",
+    "http://workout-today.herokuapp.com"
 ]
 
 # Password validation
@@ -114,6 +115,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CRONJOBS = [
+    ('0 0 * * *', 'exercises.views.generate_daily_workout_cron')
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/

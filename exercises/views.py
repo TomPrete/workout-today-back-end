@@ -7,6 +7,7 @@ from .workout_generator import get_exercises_for_workout, no_repeat_target_muscl
 from exercises.models import Exercise, Workout, WorkoutExercise
 from .script import run_migrations
 from datetime import datetime, date, timedelta
+import pytz
 import requests
 import json
 import os
@@ -56,7 +57,11 @@ def run_script(request):
 
 def generate_workout(request):
     if request.method == "GET":
-        print("HERE")
+        us_east = pytz.timezone("America/New_York")
+        east_coast_time = datetime.now(us_east)
+        current_weekday = datetime.now(us_east).weekday()
+        print(current_weekday)
+        return render(request, 'exercises/generate_workout.html', {'date_time': east_coast_time})
 
     if request.method == "POST":
         f = open(path)
@@ -64,13 +69,17 @@ def generate_workout(request):
         # a dictionary
         data = json.load(f)
         # Gets current weekday
-        current_weekday = datetime.today().weekday()
+        us_east = pytz.timezone("America/New_York")
+        east_coast_time = datetime.now(us_east)
+        current_weekday = east_coast_time.weekday()
         # Gets previous strength workout date
-        previous_strength_workout_date = datetime.today() - timedelta(days=2)
+        previous_strength_workout_date = east_coast_time - timedelta(days=2)
         # Gets previous strength workout muscle target
         print("previous_strength_workout_date: ", previous_strength_workout_date)
-        # previous_strength_workout_target = Workout.objects.get(workout_date=previous_strength_workout_date).workout_target.split('-')
-        previous_strength_workout_target = ["shoulders", "chest", "triceps"]
+        try:
+            previous_strength_workout_target = Workout.objects.get(workout_date=previous_strength_workout_date).workout_target.split('-')
+        except:
+            previous_strength_workout_target = ["shoulders", "biceps", "triceps"]
         # Choices random muscle target
         choice = random.choice(data[str(current_weekday)])
         # Makes sure the prevous muscle target isn't the same as the current muscle target
@@ -83,17 +92,61 @@ def generate_workout(request):
             WorkoutExercise.objects.create(exercise=exercise, workout=new_workout, order=order+1)
         serialized_workout = ExerciseSerializer(workout).all_exercises
         return JsonResponse(data = serialized_workout, status=200)
-    return render(request, 'exercises/generate_workout.html', {})
+
 
 def daily_workout(request):
-    if request.method == "GET":
-        workout = Workout.objects.filter(workout_date=date.today())[0]
-        workout_exercises_object = WorkoutExercise.objects.filter(workout=workout).order_by('order')
-        workout_exercises = []
-        for exercise in workout_exercises_object:
-            print(f"{exercise.order}: {Exercise.objects.get(id=exercise.exercise_id).name}")
-            workout_exercises.append(exercise.exercise)
-        serialized_workout = ExerciseSerializer(workout_exercises).all_exercises
-        return JsonResponse(data = serialized_workout, status=200)
+    try:
+        if request.method == "GET":
+            workout = Workout.objects.filter(workout_date=date.today())[0]
+            workout_exercises_object = WorkoutExercise.objects.filter(workout=workout).order_by('order')
+            workout_exercises = []
+            for exercise in workout_exercises_object:
+                print(f"{exercise.order}: {Exercise.objects.get(id=exercise.exercise_id).name}")
+                workout_exercises.append(exercise.exercise)
+            serialized_workout = ExerciseSerializer(workout_exercises).all_exercises
+            return JsonResponse(data = serialized_workout, status=200)
+    except:
+        print("ERROR")
+        return JsonResponse(data = {'error': 'There was an error.'}, status=200)
+
+
+def generate_daily_workout_cron():
+    cron_logger = os.path.join(my_path, "cron/generate_workout.txt")
+    us_east = pytz.timezone("America/New_York")
+    east_coast_time = datetime.now(us_east)
+    try:
+        f = open(path)
+        # returns JSON object as
+        # a dictionary
+        data = json.load(f)
+        # Gets current weekday
+        current_weekday = east_coast_time.weekday()
+        # Gets previous strength workout date
+        previous_strength_workout_date = east_coast_time - timedelta(days=2)
+        # Gets previous strength workout muscle target
+        print("previous_strength_workout_date: ", previous_strength_workout_date)
+        try:
+            previous_strength_workout_target = Workout.objects.get(workout_date=previous_strength_workout_date).workout_target.split('-')
+        except:
+            previous_strength_workout_target = ["shoulders", "biceps", "triceps"]
+        # Choices random muscle target
+        choice = random.choice(data[str(current_weekday)])
+        # Makes sure the prevous muscle target isn't the same as the current muscle target
+        while no_repeat_target_muscle(previous_strength_workout_target, choice['target'], current_weekday):
+            choice = random.choice(data[str(current_weekday)])
+        workout = get_exercises_for_workout(choice['target'])
+        workout_target = "-".join(choice['target'])
+        new_workout = Workout.objects.create(workout_target=workout_target)
+        for order, exercise in enumerate(workout):
+            WorkoutExercise.objects.create(exercise=exercise, workout=new_workout, order=order+1)
+        with open(cron_logger, 'a') as j:
+            j.write(f"Success: ${east_coast_time}\n")
+            j.close()
+            return "Success"
+    except:
+        with open(cron_logger, 'a') as j:
+            j.write(f"Failure: ${east_coast_time}\n")
+            j.close()
+            return "Failure"
 
 
