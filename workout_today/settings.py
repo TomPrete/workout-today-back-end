@@ -80,15 +80,15 @@ WSGI_APPLICATION = 'workout_today.wsgi.application'
 
 DATABASES = {
     # Postgres
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'workout_today',
-    # }
-    # SQLite
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'workout_today',
     }
+    # SQLite
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
 }
 
 CORS_ORIGIN_WHITELIST = [
