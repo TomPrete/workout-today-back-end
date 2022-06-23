@@ -15,7 +15,7 @@ class Exercise(models.Model):
         return f"{self.name}"
 
 class Workout(models.Model):
-    workout_date = models.DateField(auto_now_add=True)
+    workout_date = models.DateField()
     workout_target = models.CharField(max_length=50, blank=True, null=True)
     exercises = models.ManyToManyField(
         Exercise,

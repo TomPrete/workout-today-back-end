@@ -1,16 +1,18 @@
 from builtins import object
 
 class ExerciseSerializer(object):
-    def __init__(self, workout):
+    def __init__(self, workout_exercises, workout):
+        self.workout_exercises = workout_exercises
         self.workout = workout
 
     @property
     def all_exercises(self):
         output = {
-            "exercises": []
+            "exercises": [],
+            "workout_target": self.workout
         }
 
-        for idx, exercise in enumerate(self.workout):
+        for idx, exercise in enumerate(self.workout_exercises):
             output["exercises"].append({
                 "order": idx + 1,
                 "name": exercise.name,

@@ -64,3 +64,9 @@ def no_repeat_target_muscle(prevoius_target, current_target, current_weekday):
         return True
     return False
 
+def previous_workout_two_days_ago(current_day, days_before_today):
+    previous_day = current_day - days_before_today
+    if previous_day < 0:
+        previous_day = 7 + previous_day
+    return previous_day
+
