@@ -128,7 +128,7 @@ def start_workout(request):
             daily_workout.total_workouts = total_daily_workouts + 1
             daily_workout.save()
         except:
-            DailyWorkouts.objects.create(workout_date=date.today(), count=1)
+            DailyWorkouts.objects.create(workout_date=date.today(), total_workouts=1)
 
         return JsonResponse(data = { 'message': 'success'}, status=200)
 
