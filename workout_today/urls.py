@@ -20,3 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('exercises.urls')),
 ]
+
+handler404 = "workout_today.views.page_not_found_view"

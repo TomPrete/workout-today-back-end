@@ -132,9 +132,6 @@ def start_workout(request):
 
         return JsonResponse(data = { 'message': 'success'}, status=200)
 
-
-
-
 def generate_daily_workout_cron():
     cron_logger = os.path.join(my_path, "cron/generate_workout.txt")
     us_east = pytz.timezone("America/New_York")
