@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views import View
-
+from django.views.decorators.csrf import csrf_exempt
 from exercises.serializers import ExerciseSerializer
 from .workout_generator import get_exercises_for_workout, no_repeat_target_muscle, previous_workout_two_days_ago
-from exercises.models import Exercise, Workout, WorkoutExercise
+from exercises.models import Exercise, Workout, WorkoutExercise, DailyWorkouts
 from .script import run_migrations
 from datetime import datetime, date, timedelta
 import pytz
@@ -96,7 +96,7 @@ def generate_workout(request):
         serialized_workout = ExerciseSerializer(workout, choice['target']).all_exercises
         return JsonResponse(data = serialized_workout, status=200)
 
-def daily_workout(request):
+def get_daily_workout(request):
     us_east = pytz.timezone("America/New_York")
     east_coast_time = datetime.now(us_east)
     try:
@@ -114,6 +114,25 @@ def daily_workout(request):
     except:
         print("ERROR")
         return JsonResponse(data = {'error': 'There was an error.'}, status=200)
+
+@csrf_exempt
+def start_workout(request):
+    us_east = pytz.timezone("America/New_York")
+    east_coast_time = datetime.now(us_east)
+    if request.method == 'POST':
+        try:
+            daily_workout = DailyWorkouts.objects.get(workout_date=date.today())
+            print(daily_workout)
+            total_daily_workouts = daily_workout.total_workouts
+            print(total_daily_workouts)
+            daily_workout.total_workouts = total_daily_workouts + 1
+            daily_workout.save()
+        except:
+            DailyWorkouts.objects.create(workout_date=date.today(), count=1)
+
+        return JsonResponse(data = { 'message': 'success'}, status=200)
+
+
 
 
 def generate_daily_workout_cron():

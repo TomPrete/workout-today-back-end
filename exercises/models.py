@@ -28,3 +28,7 @@ class WorkoutExercise(models.Model):
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
     workout = models.ForeignKey(Workout, on_delete=models.CASCADE)
     order = models.IntegerField()
+
+class DailyWorkouts(models.Model):
+    workout_date = models.DateField()
+    total_workouts = models.IntegerField()
