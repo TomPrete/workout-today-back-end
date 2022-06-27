@@ -7,14 +7,16 @@ def get_exercises_for_workout(workout_choices):
     try:
         workout_set_quantity_options = ['single', 'double', 'triple']
         workout_set_quantity = random.choice(workout_set_quantity_options)
+        print("ROUNDS: ", workout_set_quantity)
         if workout_set_quantity == 'single':
-            return get_exercises(workout_choices, 20)
+            exercise_list = get_exercises(workout_choices, 20)
+            return {'exercise_list': [*exercise_list], 'rounds': 1}
         elif workout_set_quantity == 'double':
             exercise_list = get_exercises(workout_choices, 10)
-            return [*exercise_list, *exercise_list]
+            return {'exercise_list': [*exercise_list, *exercise_list], 'rounds': 2}
         else:
             exercise_list = get_exercises(workout_choices, 7)
-            return [*exercise_list, *exercise_list, *exercise_list]
+            return {'exercise_list': [*exercise_list, *exercise_list, *exercise_list], 'rounds': 3}
 
     except:
         return "there was an error"
@@ -69,4 +71,12 @@ def previous_workout_two_days_ago(current_day, days_before_today):
     if previous_day < 0:
         previous_day = 7 + previous_day
     return previous_day
+
+def stringify_target_workout(workout_target_arr):
+    if len(workout_target_arr) == 1:
+        return workout_target_arr[0].capitalize()
+    elif (len(workout_target_arr) == 2):
+        return f"{workout_target_arr[0].capitalize()} & {workout_target_arr[1].capitalize()}"
+    else:
+        return f"{workout_target_arr[0].capitalize()}, {workout_target_arr[1].capitalize()} & {workout_target_arr[2].capitalize()}"
 

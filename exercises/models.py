@@ -17,6 +17,7 @@ class Exercise(models.Model):
 class Workout(models.Model):
     workout_date = models.DateField()
     workout_target = models.CharField(max_length=50, blank=True, null=True)
+    total_rounds = models.IntegerField(blank=True, null=True)
     exercises = models.ManyToManyField(
         Exercise,
         through='WorkoutExercise',
@@ -32,3 +33,4 @@ class WorkoutExercise(models.Model):
 class DailyWorkouts(models.Model):
     workout_date = models.DateField()
     total_workouts = models.IntegerField()
+    status = models.CharField(max_length=8)

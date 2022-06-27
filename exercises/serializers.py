@@ -1,15 +1,17 @@
 from builtins import object
 
 class ExerciseSerializer(object):
-    def __init__(self, workout_exercises, workout):
+    def __init__(self, workout_exercises, workout, rounds):
         self.workout_exercises = workout_exercises
         self.workout = workout
+        self.rounds = rounds
 
     @property
     def all_exercises(self):
         output = {
             "exercises": [],
-            "workout_target": self.workout
+            "workout_target": self.workout,
+            "rounds": self.rounds
         }
 
         for idx, exercise in enumerate(self.workout_exercises):
