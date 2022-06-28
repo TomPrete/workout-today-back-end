@@ -24,11 +24,17 @@ class Workout(models.Model):
         related_name='workout_exercises'
     )
 
+    def __str__(self):
+        return f"{self.workout_date}: {self.workout_target}"
+
 
 class WorkoutExercise(models.Model):
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
     workout = models.ForeignKey(Workout, on_delete=models.CASCADE)
     order = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.workout.workout_target} - {self.workout.workout_date}: {self.exercise.name} ({self.order})"
 
 class DailyWorkouts(models.Model):
     workout_date = models.DateField()
