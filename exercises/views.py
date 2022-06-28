@@ -30,21 +30,6 @@ my_path = os.path.abspath(os.path.dirname(__file__))
 path = os.path.join(my_path, "config/workout_week_config.json")
 print(path)
 
-# class GetExercises(View):
-#     def get(self, request):
-#         response = requests.get(
-#             # 'https://exercisedb.p.rapidapi.com/exercises/bodyPartList',
-#             # 'https://exercisedb.p.rapidapi.com/exercises/bodyPart/cardio',
-#             'https://exercisedb.p.rapidapi.com/exercises',
-#             headers={
-#                 'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com',
-#                 'X-RapidAPI-Key': '1d73d9f222msh5eb0f148f96868cp109b6bjsne4446eeab19b'
-#             },
-#         )
-#         data = response.json()
-#         print("LENGTH: ", len(data))
-#         return render(request, 'exercises/exercise_list.html', {'exercise_list': data})
-
 class GetExercises(View):
     def get(self, request):
         exercise_list = Exercise.objects.all()
@@ -61,21 +46,28 @@ def generate_workout(request):
         east_coast_time = datetime.now(us_east)
         current_weekday = datetime.now(us_east).weekday()
         print(current_weekday)
-        return render(request, 'exercises/generate_workout.html', {'date_time': east_coast_time})
+        return render(request, 'exercises/generate_workout.html', {'date_time': east_coast_time, 'last_workout_generate': Workout.objects.last()})
 
     if request.method == "POST":
         f = open(path)
         # returns JSON object as
         # a dictionary
         data = json.load(f)
+        date_response = request.POST['date']
+        split_date = date_response.split('-')
+        new_date = date(int(split_date[0]),int(split_date[1]),int(split_date[2]))
+        current_weekday = new_date.weekday()
+        previous_strength_workout_date = new_date - timedelta(days=2)
+        # --- This code generate a new workout for today
         # Gets current weekday
-        us_east = pytz.timezone("America/New_York")
-        east_coast_time = datetime.now(us_east)
-        current_weekday = east_coast_time.weekday()
-        print(current_weekday)
-        # Gets previous strength workout date
-        previous_strength_workout_date = east_coast_time - timedelta(days=2)
-        # Gets previous strength workout muscle target
+        # us_east = pytz.timezone("America/New_York")
+        # east_coast_time = datetime.now(us_east)
+        # current_weekday = east_coast_time.weekday()
+        # print(current_weekday)
+        # # Gets previous strength workout date
+        # previous_strength_workout_date = east_coast_time - timedelta(days=2)
+        # # Gets previous strength workout muscle target
+        # -----------------------------------------------
         print("previous_strength_workout_date: ", previous_strength_workout_date)
         try:
             previous_strength_workout_target = Workout.objects.get(workout_date=previous_strength_workout_date).workout_target.split('-')
@@ -88,7 +80,7 @@ def generate_workout(request):
             choice = random.choice(data[str(current_weekday)])
         workout = get_exercises_for_workout(choice['target'])
         workout_target = "-".join(choice['target'])
-        new_workout = Workout.objects.create(workout_target=workout_target, workout_date=east_coast_time, total_rounds=workout['rounds'])
+        new_workout = Workout.objects.create(workout_target=workout_target, workout_date=new_date, total_rounds=workout['rounds'])
         print(new_workout)
         for order, exercise in enumerate(workout['exercise_list']):
             WorkoutExercise.objects.create(exercise=exercise, workout=new_workout, order=order+1)
