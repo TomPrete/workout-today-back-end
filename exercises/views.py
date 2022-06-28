@@ -84,7 +84,7 @@ def generate_workout(request):
         print(new_workout)
         for order, exercise in enumerate(workout['exercise_list']):
             WorkoutExercise.objects.create(exercise=exercise, workout=new_workout, order=order+1)
-        serialized_workout = ExerciseSerializer(workout['exercise_list'], choice['target'], workout['rounds']).all_exercises
+        serialized_workout = ExerciseSerializer(workout['exercise_list'], stringify_target_workout(choice['target']), workout['rounds']).all_exercises
         return JsonResponse(data = serialized_workout, status=200)
 
 def get_daily_workout(request):
