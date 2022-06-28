@@ -58,16 +58,6 @@ def generate_workout(request):
         new_date = date(int(split_date[0]),int(split_date[1]),int(split_date[2]))
         current_weekday = new_date.weekday()
         previous_strength_workout_date = new_date - timedelta(days=2)
-        # --- This code generate a new workout for today
-        # Gets current weekday
-        # us_east = pytz.timezone("America/New_York")
-        # east_coast_time = datetime.now(us_east)
-        # current_weekday = east_coast_time.weekday()
-        # print(current_weekday)
-        # # Gets previous strength workout date
-        # previous_strength_workout_date = east_coast_time - timedelta(days=2)
-        # # Gets previous strength workout muscle target
-        # -----------------------------------------------
         print("previous_strength_workout_date: ", previous_strength_workout_date)
         try:
             previous_strength_workout_target = Workout.objects.get(workout_date=previous_strength_workout_date).workout_target.split('-')

@@ -20,6 +20,8 @@
     <form method="POST">
       {% csrf_token %}
       <input type="date" name="date" id="date">
+      <input type="checkbox" id="abs" name="abs" value="abs">
+      <label for="abs">Generate Ab Workout</label><br>
       <button type='submit'>Generate Workout</button>
     </form>
 
