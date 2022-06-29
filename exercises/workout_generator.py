@@ -21,6 +21,13 @@ def get_exercises_for_workout(workout_choices):
     except:
         return "there was an error"
 
+def generate_ab_workout():
+    ab_queryset = Exercise.objects.filter(muscle_target='abs').order_by("?")[:10]
+    ab_exercises = []
+    for exercise in ab_queryset:
+        ab_exercises.append(exercise)
+    return ab_exercises
+
 def get_exercises(workout_choices, number):
     unordered_exercises = []
     for choice in workout_choices:
