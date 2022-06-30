@@ -10,6 +10,7 @@ class Exercise(models.Model):
     diffulty_level = models.IntegerField(default=0, blank=True, null=True)
     equipment = models.BooleanField(blank=True, null=True)
     resistance_type = models.CharField(max_length=50, blank=True, null=True)
+    demo_src = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return f"{self.name}"
