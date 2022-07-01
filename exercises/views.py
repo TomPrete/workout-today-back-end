@@ -46,7 +46,7 @@ def generate_workout(request):
         east_coast_time = datetime.now(us_east)
         current_weekday = datetime.now(us_east).weekday()
         print(current_weekday)
-        return render(request, 'exercises/generate_workout.html', {'date_time': east_coast_time, 'last_workout_generate': Workout.objects.last()})
+        return render(request, 'exercises/generate_workout.html', {'date_time': east_coast_time, 'last_workout_generate': Workout.objects.all().exclude(workout_target='abs').last()})
 
     if request.method == "POST":
         f = open(path)
