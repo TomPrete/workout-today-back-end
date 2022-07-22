@@ -1,4 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+
+class User(AbstractUser):
+    is_premium = models.BooleanField(null=True, blank=True, default=False)
 
 # Create your models here.
 class Exercise(models.Model):

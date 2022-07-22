@@ -12,6 +12,9 @@ import requests
 import json
 import os
 import random
+my_path = os.path.abspath(os.path.dirname(__file__))
+path = os.path.join(my_path, "config/workout_week_config.json")
+
 
 test_choices = [
     ["chest", "back"],
@@ -25,11 +28,6 @@ test_choices = [
     ["core"]
 ]
 
-
-my_path = os.path.abspath(os.path.dirname(__file__))
-path = os.path.join(my_path, "config/workout_week_config.json")
-print(path)
-
 class GetExercises(View):
     def get(self, request):
         exercise_list = Exercise.objects.all()
@@ -41,6 +39,7 @@ def run_script(request):
     return HttpResponse("Completed")
 
 def generate_workout(request):
+    print("USER: ", request.user.is_authenticated)
     if request.method == "GET":
         us_east = pytz.timezone("America/New_York")
         east_coast_time = datetime.now(us_east)
@@ -93,10 +92,15 @@ def get_daily_workout(request):
     east_coast_time = datetime.now(us_east)
     try:
         if request.method == "GET":
+            print("request", request)
             workout = Workout.objects.filter(workout_date=east_coast_time).exclude(workout_target='abs')[0]
+            print(workout)
             ab_workout = Workout.objects.filter(workout_target='abs').last()
+            print(ab_workout)
             workout_exercises_object = WorkoutExercise.objects.filter(workout=workout).order_by('order')
+            print(workout_exercises_object)
             ab_exercises_object = WorkoutExercise.objects.filter(workout=ab_workout).order_by('order')
+            print(ab_exercises_object)
             workout_exercises = []
             ab_workout_exercises = []
             workout_target = workout.workout_target.split('-')
@@ -106,6 +110,8 @@ def get_daily_workout(request):
             for ab_exercise in ab_exercises_object:
                 print(f"{exercise.order}: {Exercise.objects.get(id=exercise.exercise_id).name}")
                 ab_workout_exercises.append(ab_exercise.exercise)
+            print(workout_exercises)
+            print(ab_workout_exercises)
             serialized_workout = ExerciseSerializer(workout_exercises, stringify_target_workout(workout_target), workout.total_rounds, ab_workout_exercises).all_exercises
             print(serialized_workout)
             return JsonResponse(data = serialized_workout, status=200)

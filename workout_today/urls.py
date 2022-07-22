@@ -16,9 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('exercises.urls')),
+    path('accounts/', include('accounts.urls')),
+    path('api/v1/accounts/', include('dj_rest_auth.urls')),
+    path('api/v1/accounts/register/', include('dj_rest_auth.registration.urls')),
 ]
 
 handler404 = "workout_today.views.page_not_found_view"
+
+# a3b8bee7b193232f10dfe5e1963b6ad43cfad96f
