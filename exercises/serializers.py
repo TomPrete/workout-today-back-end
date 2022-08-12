@@ -26,7 +26,8 @@ class ExerciseSerializer(object):
                 'muscle_group': exercise.muscle_group,
                 'diffulty_level': exercise.diffulty_level,
                 'equipment': exercise.equipment,
-                'resistance_type': exercise.resistance_type
+                'resistance_type': exercise.resistance_type,
+                'image_url': exercise.demo_src
             })
         if self.ab_exercises:
             for idx, ab_exercise in enumerate(self.ab_exercises):
@@ -39,6 +40,7 @@ class ExerciseSerializer(object):
                     'muscle_group': ab_exercise.muscle_group,
                     'diffulty_level': ab_exercise.diffulty_level,
                     'equipment': ab_exercise.equipment,
-                    'resistance_type': ab_exercise.resistance_type
+                    'resistance_type': ab_exercise.resistance_type,
+                    'image_url': exercise.demo_src
                 })
         return output
