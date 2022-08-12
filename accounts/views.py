@@ -59,9 +59,9 @@ class CheckoutSession(APIView):
                     'enabled': True
                 },
                 mode='subscription',
-                success_url="http://localhost:3000/checkout" +
+                success_url="https://workout-today.herokuapp.com/checkout" +
                 '?success=true&session_id={CHECKOUT_SESSION_ID}',
-                cancel_url="http://localhost:3000/checkout" + '?canceled=true',
+                cancel_url="https://workout-today.herokuapp.com/checkout" + '?canceled=true',
             )
             print("SESSION: ", checkout_session)
             return redirect(checkout_session.url, code=303)
@@ -86,7 +86,7 @@ class CustomerPortalSession(APIView):
 
         # This is the URL to which the customer will be redirected after they are
         # done managing their billing with the portal.
-        return_url = "http://localhost:3000/"
+        return_url = "https://workout-today.herokuapp.com/"
 
         portalSession = stripe.billing_portal.Session.create(
             customer=checkout_session.customer,
