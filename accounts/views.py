@@ -12,7 +12,7 @@ import stripe
 stripe.api_key = 'sk_test_51LTVzmCxk3VOyNJUcsZ4S3O5C7y1p6tLcLw37L17reSYaZyIdSlUxMMKkboTgXo0sePUsYoJ5QdSEVvqiDAHJv6G00e0wdArHg'
 
 
-FRONTEND_DOMAIN_URL = "http://localhost:3000/"
+FRONTEND_DOMAIN_URL = "https://workout-today.herokuapp.com/"
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
@@ -59,15 +59,17 @@ class CheckoutSession(APIView):
                     'enabled': True
                 },
                 mode='subscription',
-                success_url="http://localhost:3000/checkout" +
+                success_url="https://workout-today.herokuapp.com/checkout" +
                 '?success=true&session_id={CHECKOUT_SESSION_ID}',
-                cancel_url="http://localhost:3000/checkout" + '?canceled=true',
+                cancel_url="https://workout-today.herokuapp.com/checkout" + '?canceled=true',
             )
             print("SESSION: ", checkout_session)
             return redirect(checkout_session.url, code=303)
         except Exception as e:
-            print(e)
-            return "Server error", 500
+            data = {
+                'message': e
+            }
+            return Response(data, status=500)
 
 @api_view(['POST'])
 def checkout_session(request):
@@ -81,15 +83,24 @@ class CustomerPortalSession(APIView):
     permission_classes = []
 
     def post(self, request):
-        checkout_session_id = request.POST['session_id']
-        checkout_session = stripe.checkout.Session.retrieve(checkout_session_id)
+        try:
+            checkout_session_id = request.POST['session_id']
+            checkout_session = stripe.checkout.Session.retrieve(checkout_session_id)
+            print("REQUEST: ", request)
+            print("checkout_session: ", checkout_session)
+            # This is the URL to which the customer will be redirected after they are
+            # done managing their billing with the portal.
+            return_url = "https://workout-today.herokuapp.com/"
 
-        # This is the URL to which the customer will be redirected after they are
-        # done managing their billing with the portal.
-        return_url = "http://localhost:3000/"
-
-        portalSession = stripe.billing_portal.Session.create(
-            customer=checkout_session.customer,
-            return_url=return_url,
-        )
-        return redirect(portalSession.url, code=303)
+            portalSession = stripe.billing_portal.Session.create(
+                customer=checkout_session.customer,
+                return_url=return_url,
+            )
+            print("portal: ", portalSession)
+            return redirect(portalSession.url, code=303)
+        except Exception as e:
+            print("EXCEPTION: ", e)
+            data = {
+                'message': e
+            }
+            return Response(data, status=500)
