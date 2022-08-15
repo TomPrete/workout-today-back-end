@@ -55,11 +55,7 @@ def generate_workout(request):
         # a dictionary
         data = json.load(f)
         date_response = request.POST['date']
-        try:
-            existing_workout =  Workout.objects.filter(workout_date=date_response).exclude(workout_target='abs')[0]
-            return HttpResponse(f'Workout already exists on this data {date_response}')
-        except:
-            existing_workout = None
+
         split_date = date_response.split('-')
         current_date = date(int(split_date[0]),int(split_date[1]),int(split_date[2]))
         current_weekday = current_date.weekday()
@@ -73,6 +69,12 @@ def generate_workout(request):
             serialized_workout = ExerciseSerializer(ab_exercises, request.POST['abs'], 1).all_exercises
             return JsonResponse(data = serialized_workout, status=200)
         else:
+            try:
+                existing_workout =  Workout.objects.filter(workout_date=date_response).exclude(workout_target='abs')[0]
+                return HttpResponse(f'Workout already exists on this date {date_response}')
+            except:
+                existing_workout = None
+
             previous_strength_workout_date = current_date - timedelta(days=2)
             # print("previous_strength_workout_date: ", previous_strength_workout_date)
             try:
