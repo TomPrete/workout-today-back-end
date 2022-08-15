@@ -5,7 +5,9 @@ from django.views.decorators.csrf import csrf_exempt
 from exercises.serializers import ExerciseSerializer
 from .workout_generator import get_exercises_for_workout, no_repeat_target_muscle, previous_workout_two_days_ago, stringify_target_workout, generate_ab_workout
 from exercises.models import Exercise, Workout, WorkoutExercise, DailyWorkouts
+from django.shortcuts import redirect
 from .script import run_migrations
+from workout_today.views import page_not_found_view
 from datetime import datetime, date, timedelta
 import pytz
 import requests
@@ -31,7 +33,7 @@ test_choices = [
 class GetExercises(View):
     def get(self, request):
         exercise_list = Exercise.objects.all()
-        print("LENGTH: ", len(exercise_list))
+        # print("LENGTH: ", len(exercise_list))
         return render(request, 'exercises/list.html', {'exercise_list': exercise_list})
 
 def run_script(request):
@@ -40,11 +42,11 @@ def run_script(request):
 
 def generate_workout(request):
     print("USER: ", request.user.is_authenticated)
+    print("USER: ", request.user)
     if request.method == "GET":
         us_east = pytz.timezone("America/New_York")
         east_coast_time = datetime.now(us_east)
         current_weekday = datetime.now(us_east).weekday()
-        print(current_weekday)
         return render(request, 'exercises/generate_workout.html', {'date_time': east_coast_time, 'last_workout_generate': Workout.objects.all().exclude(workout_target='abs').last()})
 
     if request.method == "POST":
@@ -53,12 +55,16 @@ def generate_workout(request):
         # a dictionary
         data = json.load(f)
         date_response = request.POST['date']
+        try:
+            existing_workout =  Workout.objects.filter(workout_date=date_response).exclude(workout_target='abs')[0]
+            return HttpResponse(f'Workout already exists on this data {date_response}')
+        except:
+            existing_workout = None
         split_date = date_response.split('-')
         current_date = date(int(split_date[0]),int(split_date[1]),int(split_date[2]))
         current_weekday = current_date.weekday()
 
         if request.POST.get('abs'):
-            print(request.POST['abs'])
             ab_exercises = generate_ab_workout()
             ab_workout = Workout.objects.create(workout_target=request.POST['abs'], workout_date=current_date, total_rounds=1)
             print(ab_workout)
@@ -68,7 +74,7 @@ def generate_workout(request):
             return JsonResponse(data = serialized_workout, status=200)
         else:
             previous_strength_workout_date = current_date - timedelta(days=2)
-            print("previous_strength_workout_date: ", previous_strength_workout_date)
+            # print("previous_strength_workout_date: ", previous_strength_workout_date)
             try:
                 previous_strength_workout_target = Workout.objects.filter(workout_date=previous_strength_workout_date).exclude(workout_target='abs')[0].workout_target.split('-')
             except:
@@ -81,7 +87,7 @@ def generate_workout(request):
             workout = get_exercises_for_workout(choice['target'])
             workout_target = "-".join(choice['target'])
             new_workout = Workout.objects.create(workout_target=workout_target, workout_date=current_date, total_rounds=workout['rounds'])
-            print(new_workout)
+            # print(new_workout)
             for order, exercise in enumerate(workout['exercise_list']):
                 WorkoutExercise.objects.create(exercise=exercise, workout=new_workout, order=order+1)
             serialized_workout = ExerciseSerializer(workout['exercise_list'], stringify_target_workout(choice['target']), workout['rounds']).all_exercises
@@ -92,28 +98,28 @@ def get_daily_workout(request):
     east_coast_time = datetime.now(us_east)
     try:
         if request.method == "GET":
-            print("request", request)
+            # print("request", request)
             workout = Workout.objects.filter(workout_date=east_coast_time).exclude(workout_target='abs')[0]
-            print(workout)
+            # print(workout)
             ab_workout = Workout.objects.filter(workout_target='abs').last()
-            print(ab_workout)
+            # print(ab_workout)
             workout_exercises_object = WorkoutExercise.objects.filter(workout=workout).order_by('order')
-            print(workout_exercises_object)
+            # print(workout_exercises_object)
             ab_exercises_object = WorkoutExercise.objects.filter(workout=ab_workout).order_by('order')
-            print(ab_exercises_object)
+            # print(ab_exercises_object)
             workout_exercises = []
             ab_workout_exercises = []
             workout_target = workout.workout_target.split('-')
             for exercise in workout_exercises_object:
-                print(f"{exercise.order}: {Exercise.objects.get(id=exercise.exercise_id).name}")
+                # print(f"{exercise.order}: {Exercise.objects.get(id=exercise.exercise_id).name}")
                 workout_exercises.append(exercise.exercise)
             for ab_exercise in ab_exercises_object:
-                print(f"{exercise.order}: {Exercise.objects.get(id=exercise.exercise_id).name}")
+                # print(f"{exercise.order}: {Exercise.objects.get(id=exercise.exercise_id).name}")
                 ab_workout_exercises.append(ab_exercise.exercise)
-            print(workout_exercises)
-            print(ab_workout_exercises)
+            # print(workout_exercises)
+            # print(ab_workout_exercises)
             serialized_workout = ExerciseSerializer(workout_exercises, stringify_target_workout(workout_target), workout.total_rounds, ab_workout_exercises).all_exercises
-            print(serialized_workout)
+            # print(serialized_workout)
             return JsonResponse(data = serialized_workout, status=200)
     except:
         print("ERROR")
@@ -125,12 +131,12 @@ def start_workout(request):
     east_coast_time = datetime.now(us_east)
     if request.method == 'POST':
         status = json.load(request)
-        print(status)
+        # print(status)
         try:
             daily_workout = DailyWorkouts.objects.get(workout_date=date.today(), status=status)
-            print(daily_workout)
+            # print(daily_workout)
             total_daily_workouts = daily_workout.total_workouts
-            print(total_daily_workouts)
+            # print(total_daily_workouts)
             daily_workout.total_workouts = total_daily_workouts + 1
             daily_workout.save()
         except:
