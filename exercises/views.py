@@ -2,13 +2,17 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
-from exercises.serializers import ExerciseSerializer
+from exercises.serializers import ExerciseSerializer, WorkoutSerializer
 from .workout_generator import get_exercises_for_workout, no_repeat_target_muscle, previous_workout_two_days_ago, stringify_target_workout, generate_ab_workout
 from exercises.models import Exercise, Workout, WorkoutExercise, DailyWorkouts
 from django.shortcuts import redirect
 from .script import run_migrations
 from workout_today.views import page_not_found_view
 from datetime import datetime, date, timedelta
+from rest_framework.views import APIView
+from rest_framework import authentication, permissions
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.response import Response
 import pytz
 import requests
 import json
@@ -98,6 +102,7 @@ def generate_workout(request):
 def get_daily_workout(request):
     us_east = pytz.timezone("America/New_York")
     east_coast_time = datetime.now(us_east)
+    # print("REQUEST: ", request.method)
     try:
         if request.method == "GET":
             # print("request", request)
@@ -186,4 +191,52 @@ def generate_daily_workout_cron():
             j.close()
             return "Failure"
 
+class MoreWorkouts(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
+    def get(self, request, format=None):
+        us_east = pytz.timezone("America/New_York")
+        east_coast_time = datetime.now(us_east)
+        one_day = datetime.now(us_east) - timedelta(days=1)
+        two_days = datetime.now(us_east) - timedelta(days=2)
+        three_days = datetime.now(us_east) - timedelta(days=3)
+        if request.query_params.get('date'):
+            print("QUERY: ", request.query_params.get('date'))
+        try:
+            date = request.query_params.get('date') or None
+            if date:
+                past_workout = get_past_workout(date)
+                return past_workout
+            workouts_query = Workout.objects.filter(workout_date__range=(three_days, east_coast_time)).exclude(workout_target='abs')
+            past_workouts = []
+            print(workouts_query)
+            for workout in workouts_query:
+                workout_serializer = WorkoutSerializer(workout)
+                past_workouts.append(workout_serializer.data)
+            print(past_workouts)
+            return Response(past_workouts, status=200)
+        except Exception as e:
+            print("EXCEPTION: ", e)
+            data = {
+                'message': e
+            }
+            return Response(data, status=500)
+
+def get_past_workout(date):
+    try:
+        workout = Workout.objects.filter(workout_date=date).exclude(workout_target='abs')[0]
+        workout_exercises_object = WorkoutExercise.objects.filter(workout=workout).order_by('order')
+        print(workout_exercises_object)
+        workout_exercises = []
+        workout_target = workout.workout_target.split('-')
+        for exercise in workout_exercises_object:
+            workout_exercises.append(exercise.exercise)
+        serialized_workout = ExerciseSerializer(workout_exercises, stringify_target_workout(workout_target), workout.total_rounds).all_exercises
+        return Response(serialized_workout, status=200)
+    except Exception as e:
+        print("EXCEPTION: ", e)
+        data = {
+            'message': e
+        }
+        return Response(data, status=500)

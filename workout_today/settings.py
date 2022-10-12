@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*-jcpkpfun$uo*z(#_5_$944nfa*m_)tt9xeuy)$bld*a5&npw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django_crontab',
     'dj_rest_auth',
     'dj_rest_auth.registration',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [

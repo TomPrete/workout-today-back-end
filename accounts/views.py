@@ -6,13 +6,17 @@ from rest_framework import authentication, permissions
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+import json
 import os
 import stripe
 
 stripe.api_key = 'sk_test_51LTVzmCxk3VOyNJUcsZ4S3O5C7y1p6tLcLw37L17reSYaZyIdSlUxMMKkboTgXo0sePUsYoJ5QdSEVvqiDAHJv6G00e0wdArHg'
 
+development = True
 
-FRONTEND_DOMAIN_URL = "https://workout-today.herokuapp.com/"
+FRONTEND_DOMAIN_URL = "https://workout-today.herokuapp.com/" if development == False else 'http://localhost:3000/'
+
+print(FRONTEND_DOMAIN_URL)
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
@@ -34,13 +38,28 @@ class CustomUserAuth(APIView):
         else:
             return Response({'message': 'user not logged in'})
 
+def get_stripe_customer(email):
+    try:
+        existing_customer = stripe.Customer.search(
+                query=f"email: '{email}'"
+            )
+        return existing_customer[0]
+    except:
+        return None
+
+
 class CheckoutSession(APIView):
     authentication_classes = []
     permission_classes = []
 
     def post(self, request, format=None):
-        print("REQUEST: ", request.POST['lookup_key'])
+        print("REQUEST: ", request.POST)
         try:
+
+            # existing_customer = get_stripe_customer(request.POST['email'])
+
+            # print(existing_customer)
+
             price = stripe.Price.retrieve(
                 request.POST['lookup_key']
             )
@@ -59,9 +78,9 @@ class CheckoutSession(APIView):
                     'enabled': True
                 },
                 mode='subscription',
-                success_url="https://workout-today.herokuapp.com/checkout" +
+                success_url=f"{FRONTEND_DOMAIN_URL}checkout" +
                 '?success=true&session_id={CHECKOUT_SESSION_ID}',
-                cancel_url="https://workout-today.herokuapp.com/checkout" + '?canceled=true',
+                cancel_url=f"{FRONTEND_DOMAIN_URL}checkout" + '?canceled=true',
             )
             print("SESSION: ", checkout_session)
             return redirect(checkout_session.url, code=303)
@@ -70,13 +89,6 @@ class CheckoutSession(APIView):
                 'message': e
             }
             return Response(data, status=500)
-
-@api_view(['POST'])
-def checkout_session(request):
-    print("REQUEST: ", request)
-    if request.method == 'POST':
-        return Response({"message": "Got some data!", "data": request.data})
-    return Response({"message": "Hello, world!"})
 
 class CustomerPortalSession(APIView):
     authentication_classes = []
@@ -90,7 +102,7 @@ class CustomerPortalSession(APIView):
             print("checkout_session: ", checkout_session)
             # This is the URL to which the customer will be redirected after they are
             # done managing their billing with the portal.
-            return_url = "https://workout-today.herokuapp.com/"
+            return_url = f"{FRONTEND_DOMAIN_URL}"
 
             portalSession = stripe.billing_portal.Session.create(
                 customer=checkout_session.customer,

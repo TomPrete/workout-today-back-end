@@ -1,4 +1,5 @@
 from builtins import object
+from rest_framework import serializers
 
 class ExerciseSerializer(object):
     def __init__(self, workout_exercises, workout, rounds, ab_exercises=None):
@@ -44,3 +45,9 @@ class ExerciseSerializer(object):
                     'image_url': exercise.demo_src
                 })
         return output
+
+
+class WorkoutSerializer(serializers.Serializer):
+    workout_date = serializers.DateField()
+    workout_target = serializers.CharField(max_length=50)
+    total_rounds = serializers.IntegerField()
