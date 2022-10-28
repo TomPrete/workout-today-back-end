@@ -13,6 +13,7 @@ from rest_framework.views import APIView
 from rest_framework import authentication, permissions
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.response import Response
+from django.contrib.auth.views import LoginView
 import pytz
 import requests
 import json
@@ -51,9 +52,10 @@ def generate_workout(request):
         us_east = pytz.timezone("America/New_York")
         east_coast_time = datetime.now(us_east)
         current_weekday = datetime.now(us_east).weekday()
-        return render(request, 'exercises/generate_workout.html', {'date_time': east_coast_time, 'last_workout_generate': Workout.objects.all().exclude(workout_target='abs').last()})
+        workouts = Workout.objects.order_by('-workout_date')[:20]
+        return render(request, 'exercises/generate_workout.html', {'date_time': east_coast_time, 'last_workout_generate': Workout.objects.all().exclude(workout_target='abs').last(), 'workouts': workouts})
 
-    if request.method == "POST":
+    if request.method == "POST" and request.user.is_authenticated:
         f = open(path)
         # returns JSON object as
         # a dictionary
@@ -98,6 +100,8 @@ def generate_workout(request):
                 WorkoutExercise.objects.create(exercise=exercise, workout=new_workout, order=order+1)
             serialized_workout = ExerciseSerializer(workout['exercise_list'], stringify_target_workout(choice['target']), workout['rounds']).all_exercises
             return JsonResponse(data = serialized_workout, status=200)
+    else:
+        return redirect('/staff/login')
 
 def get_daily_workout(request):
     us_east = pytz.timezone("America/New_York")
@@ -210,7 +214,6 @@ class MoreWorkouts(APIView):
                 return past_workout
             workouts_query = Workout.objects.filter(workout_date__range=(three_days, east_coast_time)).exclude(workout_target='abs')
             past_workouts = []
-            print(workouts_query)
             for workout in workouts_query:
                 workout_serializer = WorkoutSerializer(workout)
                 past_workouts.append(workout_serializer.data)
@@ -240,3 +243,9 @@ def get_past_workout(date):
             'message': e
         }
         return Response(data, status=500)
+
+# ------ STAFF SITE
+
+class Login(LoginView):
+    next_page='/api/generate'
+    redirect_authenticated_user=True

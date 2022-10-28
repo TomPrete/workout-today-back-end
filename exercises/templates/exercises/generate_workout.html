@@ -1,30 +1,34 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-  </head>
-  <body>
-    <div>Current Date: {{ date_time }}</div>
-    <div>Last Generated Workout Date: {{ last_workout_generate.workout_date }}</div>
-    <form method="POST">
-      {% csrf_token %}
-      <input type="date" name="date" id="date">
-      <input type="checkbox" id="abs" name="abs" value="abs">
-      <label for="abs">Generate Ab Workout</label><br>
-      <button type='submit'>Generate Workout</button>
-    </form>
+{% extends 'base.html' %}
 
-    <script src="" async defer></script>
-  </body>
-</html>
+{% block content %}
+  <div>Current Date: {{ date_time }}</div>
+  <div>Last Generated Workout Date: {{ last_workout_generate.workout_date }}</div>
+  <form method="POST">
+    {% csrf_token %}
+    <input type="date" name="date" id="date">
+    <input type="checkbox" id="abs" name="abs" value="abs">
+    <label for="abs">Generate Ab Workout</label><br>
+    <button type='submit'>Generate Workout</button>
+  </form>
+</br>
+<table class="table -3">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Date</th>
+      <th scope="col">Target</th>
+      <th scope="col">Rounds</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for workout in workouts %}
+      <tr>
+        <th scope="row">{{ workout.id }}</th>
+        <th >{{ workout.workout_date }}</th>
+        <td>{{ workout.workout_target }}</td>
+        <td>{{ workout.total_rounds }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
