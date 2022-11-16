@@ -9,6 +9,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['email'] = user.email
         token['username'] = user.username
         token['is_premium'] = user.is_premium
+        token['id'] = user.id
         print("TOKEN: ", token)
         return token
 

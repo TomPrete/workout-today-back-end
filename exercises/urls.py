@@ -1,6 +1,6 @@
 from django.urls import path
 from django.views.generic import TemplateView
-from .views import GetExercises, run_script, generate_workout, get_daily_workout, start_workout, MoreWorkouts, Login
+from .views import GetExercises, run_script, generate_workout, get_daily_workout, start_workout, MoreWorkouts, Login, FavoriteUserWorkout, UserExerciseRecord, Workouts
 from .script import add_source_gif
 
 
@@ -14,4 +14,7 @@ urlpatterns = [
     path('generate', generate_workout),
     path('start-workout', start_workout),
     path('more-workouts', MoreWorkouts.as_view()),
+    path('workouts', Workouts.as_view()),
+    path('user/<int:user_id>/favorite/<int:workout_id>', FavoriteUserWorkout.as_view()),
+    path('workout/<int:workout_id>/exercise/<int:exercise_id>/user/<int:user_id>', UserExerciseRecord.as_view()),
 ]

@@ -32,7 +32,8 @@ class CustomUserAuth(APIView):
             return Response({
                 'username': request.user.username,
                 'email': request.user.email,
-                'is_premium': request.user.is_premium
+                'is_premium': request.user.is_premium,
+                'id': request.user.id
                 })
 
         else:
