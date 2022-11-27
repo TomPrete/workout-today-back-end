@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*-jcpkpfun$uo*z(#_5_$944nfa*m_)tt9xeuy)$bld*a5&npw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -73,7 +73,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         # 'rest_framework.authentication.SessionAuthentication',
-        # 'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ],
 }
 
@@ -119,14 +119,16 @@ CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
     "https://localhost:3000",
     "https://workout-today.herokuapp.com",
-    "http://workout-today.herokuapp.com"
+    "http://workout-today.herokuapp.com",
+    "https://checkout.stripe.com"
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
     "https://localhost:3000",
     "https://workout-today.herokuapp.com",
-    "http://workout-today.herokuapp.com"
+    "http://workout-today.herokuapp.com",
+    "https://checkout.stripe.com"
 ]
 
 # allauth registration

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import MyTokenObtainPairView, CustomUserAuth, CheckoutSession, CustomerPortalSession
+from .views import MyTokenObtainPairView, CustomUserAuth, CheckoutSession, CustomerPortalSession, SubscriptionWebhook
 from rest_framework_simplejwt.views import (
     TokenRefreshView,
     TokenVerifyView
@@ -12,4 +12,5 @@ urlpatterns = [
     path('v1/current_user/', CustomUserAuth.as_view(), name='current_user'),
     path('create-checkout-session/', CheckoutSession.as_view(), name='checkout_session'),
     path('api/v1/create-portal-session/', CustomerPortalSession.as_view(), name='customer_portal'),
+    path('api/v1/subscription-webhook/', SubscriptionWebhook.as_view(), name='subscription_webhook'),
 ]

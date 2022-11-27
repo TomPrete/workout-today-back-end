@@ -1,8 +1,10 @@
 from django.shortcuts import redirect
 from rest_framework_simplejwt.views import TokenObtainPairView
+from exercises.models import User
 from .serializers import MyTokenObtainPairSerializer
 from rest_framework.views import APIView
 from rest_framework import authentication, permissions
+from rest_framework.authentication import TokenAuthentication
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -39,30 +41,60 @@ class CustomUserAuth(APIView):
         else:
             return Response({'message': 'user not logged in'})
 
-def get_stripe_customer(email):
-    try:
-        existing_customer = stripe.Customer.search(
-                query=f"email: '{email}'"
-            )
-        return existing_customer[0]
-    except:
-        return None
+def create_stripe_customer(user):
+    customer = stripe.Customer.create(email=user.email)
+    print("CUSTOMER: ", customer)
+    update_user_with_stripe_id(customer)
+    return customer
 
+def update_user_with_stripe_id(stripe_customer):
+    try:
+        user_email = stripe_customer.email
+        user = User.objects.get(email=user_email)
+        user.stripe_id=stripe_customer.id
+        user.save()
+        return True
+    except Exception as e:
+       return False
+
+def get_stripe_customer(user):
+    customer = stripe.Customer.retrieve(user.stripe_id)
+    return customer
+
+def get_subscription_key(subscription_type):
+    if subscription_type == 'monthly':
+        price_id = 'price_1M6j70Cxk3VOyNJUHyaJ4IQ5'
+    else:
+        price_id = 'price_1M6jJPCxk3VOyNJUwyFqanWS'
+    return price_id
+
+class SubscriptionWebhook(APIView):
+    # authentication_classes = [JWTAuthentication, TokenAuthentication]
+    # permission_classes = []
+
+    def post(self, request, format=None):
+        print(request)
+        data = {
+            'message': 'subscription succeeded'
+        }
+        return Response(data, status=200)
 
 class CheckoutSession(APIView):
-    authentication_classes = []
+    authentication_classes = [JWTAuthentication, TokenAuthentication]
     permission_classes = []
 
     def post(self, request, format=None):
-        print("REQUEST: ", request.POST)
+        checkout_info = json.load(request)
+        print('user: ', request.user)
         try:
-
-            # existing_customer = get_stripe_customer(request.POST['email'])
-
-            # print(existing_customer)
-
+            print(checkout_info)
+            if request.user.stripe_id:
+                stripe_customer = get_stripe_customer(request.user)
+            else:
+                stripe_customer = create_stripe_customer(request.user)
+            print("STRIPE CUSTOMER: ", stripe_customer)
             price = stripe.Price.retrieve(
-                request.POST['lookup_key']
+                get_subscription_key(checkout_info)
             )
             print("PRICE: ", price)
             checkout_session = stripe.checkout.Session.create(
@@ -76,37 +108,40 @@ class CheckoutSession(APIView):
                     'trial_period_days': 7
                 },
                 automatic_tax={
-                    'enabled': True
+                    'enabled': False
                 },
                 mode='subscription',
+                customer=stripe_customer.id,
                 success_url=f"{FRONTEND_DOMAIN_URL}checkout" +
                 '?success=true&session_id={CHECKOUT_SESSION_ID}',
-                cancel_url=f"{FRONTEND_DOMAIN_URL}checkout" + '?canceled=true',
+                cancel_url=f"{FRONTEND_DOMAIN_URL}login" + '?canceled=true',
             )
-            print("SESSION: ", checkout_session)
-            return redirect(checkout_session.url, code=303)
+            data = {
+                'stripe_url': checkout_session.url
+            }
+            return Response(data, status=303)
         except Exception as e:
+            print("EXCEPTION: ", e)
             data = {
                 'message': e
             }
             return Response(data, status=500)
 
 class CustomerPortalSession(APIView):
-    authentication_classes = []
-    permission_classes = []
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def post(self, request):
+        user_info = json.load(request)
         try:
-            checkout_session_id = request.POST['session_id']
-            checkout_session = stripe.checkout.Session.retrieve(checkout_session_id)
-            print("REQUEST: ", request)
-            print("checkout_session: ", checkout_session)
+            stripe_id = request.user.stripe_id
+            customer = get_stripe_customer(request.user)
             # This is the URL to which the customer will be redirected after they are
             # done managing their billing with the portal.
             return_url = f"{FRONTEND_DOMAIN_URL}"
 
             portalSession = stripe.billing_portal.Session.create(
-                customer=checkout_session.customer,
+                customer=customer,
                 return_url=return_url,
             )
             print("portal: ", portalSession)

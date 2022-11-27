@@ -249,7 +249,7 @@ class Workouts(APIView):
         try:
             us_east = pytz.timezone("America/New_York")
             east_coast_time = datetime.now(us_east)
-            ten_days = datetime.now(us_east) - timedelta(days=10)
+            ten_days = datetime.now(us_east) - timedelta(days=30)
             workouts_query = Workout.objects.filter(workout_date__range=(ten_days, east_coast_time)).exclude(workout_target='abs').order_by('-id')
             workout_serializer = WorkoutSerializer(workouts_query, many=True)
             return JsonResponse(workout_serializer.data, safe=False)
@@ -290,14 +290,30 @@ class FavoriteUserWorkout(APIView):
                 past_workouts.append(workout_serializer.data)
             return Response(past_workouts, status=200)
         except Exception as e:
-            print("EXCEPTION: ", e)
             data = {
                 'message': e
             }
             return Response(data, status=500)
 
-    def post(self, request, format=None):
-        pass
+    def post(self, request, user_id, workout_id, format=None):
+        try:
+            query = request.query_params.get('query')
+            if query == 'favorite':
+                favorite_workout = FavoriteWorkouts(user=request.user, workout=workout_id)
+                if favorite_workout.is_valid:
+                    workout = favorite_workout.save()
+                    print(workout)
+            print(len(favorite_workout))
+            return Response({'message': 'success'}, status=200)
+        except Exception as e:
+            data = {
+                'message': e
+            }
+            return Response(data, status=200)
+
+def does_favorite_workout_exist(user_id, workout_id):
+    favorite_workout = FavoriteWorkouts.objects.filter(user=user_id, workout=workout_id)
+    return True if len(favorite_workout) == 1 else False
 
 class UserExerciseRecord(APIView):
     authentication_classes = [JWTAuthentication]
