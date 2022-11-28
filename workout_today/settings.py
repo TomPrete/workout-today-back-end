@@ -121,7 +121,8 @@ CORS_ORIGIN_WHITELIST = [
     "https://workout-today.herokuapp.com",
     "http://workout-today.herokuapp.com",
     "https://checkout.stripe.com",
-    'https://app.workouttoday.co'
+    'https://app.workouttoday.co',
+    'http://app.workouttoday.co'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -129,8 +130,9 @@ CSRF_TRUSTED_ORIGINS = [
     "https://localhost:3000",
     "https://workout-today.herokuapp.com",
     "http://workout-today.herokuapp.com",
-    "https://checkout.stripe.com"
-    'https://app.workouttoday.co'
+    "https://checkout.stripe.com",
+    'https://app.workouttoday.co',
+    'http://app.workouttoday.co'
 ]
 
 # allauth registration
