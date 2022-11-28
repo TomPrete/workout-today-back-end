@@ -69,11 +69,13 @@ def get_subscription_key(subscription_type):
     return price_id
 
 class SubscriptionWebhook(APIView):
-    # authentication_classes = [JWTAuthentication, TokenAuthentication]
-    # permission_classes = []
+    authentication_classes = []
+    permission_classes = []
 
     def post(self, request, format=None):
-        print(request)
+        data = json.load(request)
+        print("TEST: ", data['type'])
+
         data = {
             'message': 'subscription succeeded'
         }

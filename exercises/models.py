@@ -5,6 +5,7 @@ from django.core.validators import MinValueValidator
 class User(AbstractUser):
     is_premium = models.BooleanField(null=True, blank=True, default=False)
     stripe_id = models.CharField(max_length=100, blank=True, null=True)
+    subscription_end_date = models.DateField(blank=True, null=True)
 class Exercise(models.Model):
     name = models.CharField(max_length=50)
     muscle_target = models.CharField(max_length=20)
