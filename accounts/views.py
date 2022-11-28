@@ -14,9 +14,9 @@ import stripe
 
 stripe.api_key = 'sk_test_51LTVzmCxk3VOyNJUcsZ4S3O5C7y1p6tLcLw37L17reSYaZyIdSlUxMMKkboTgXo0sePUsYoJ5QdSEVvqiDAHJv6G00e0wdArHg'
 
-development = True
+development = False
 
-FRONTEND_DOMAIN_URL = "https://workout-today.herokuapp.com/" if development == False else 'http://localhost:3000/'
+FRONTEND_DOMAIN_URL = "https://app.workouttoday.co/" if development == False else 'http://localhost:3000/'
 
 print(FRONTEND_DOMAIN_URL)
 
