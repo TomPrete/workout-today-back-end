@@ -245,12 +245,13 @@ class Workouts(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
-    def get(self, request, format=None):
+    def get(self, request, workout_type, format=None):
         try:
             us_east = pytz.timezone("America/New_York")
             east_coast_time = datetime.now(us_east)
             ten_days = datetime.now(us_east) - timedelta(days=30)
-            workouts_query = Workout.objects.filter(workout_date__range=(ten_days, east_coast_time)).exclude(workout_target='abs').order_by('-id')
+            workouts_query = Workout.objects.filter(workout_target=workout_type).order_by('-id')
+            # workouts_query = Workout.objects.filter(workout_date__range=(ten_days, east_coast_time), workout_target=workout_type).exclude(workout_target='abs').order_by('-id')
             workout_serializer = WorkoutSerializer(workouts_query, many=True)
             return JsonResponse(workout_serializer.data, safe=False)
         except Exception as e:

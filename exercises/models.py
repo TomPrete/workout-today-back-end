@@ -32,7 +32,7 @@ class Workout(models.Model):
     )
 
     def __str__(self):
-        return f"{self.workout_date}: {self.workout_target}"
+        return f"{self.workout_date}: {self.workout_target} "
 class WorkoutExercise(models.Model):
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
     workout = models.ForeignKey(Workout, on_delete=models.CASCADE)

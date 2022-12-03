@@ -14,7 +14,7 @@ import stripe
 
 stripe.api_key = 'sk_test_51LTVzmCxk3VOyNJUcsZ4S3O5C7y1p6tLcLw37L17reSYaZyIdSlUxMMKkboTgXo0sePUsYoJ5QdSEVvqiDAHJv6G00e0wdArHg'
 
-development = False
+development = True
 
 FRONTEND_DOMAIN_URL = "https://app.workouttoday.co/" if development == False else 'http://localhost:3000/'
 
@@ -68,13 +68,33 @@ def get_subscription_key(subscription_type):
         price_id = 'price_1M6jJPCxk3VOyNJUwyFqanWS'
     return price_id
 
+def find_customer_by_email(email):
+    user = User.objects.get(email=email)
+    return user
+
+def update_user_with_stripe_customer_id(user, stripe_id):
+    user.stripe_id = stripe_id
+    user.save()
+    return user
+
 class SubscriptionWebhook(APIView):
     authentication_classes = []
     permission_classes = []
 
     def post(self, request, format=None):
-        data = json.load(request)
-        print("TEST: ", data['type'])
+        req = json.load(request)
+        if req['type'] == 'customer.created':
+            email = req['data']['object']['email']
+            stripe_customer_id = req['data']['object']['id']
+            user = find_customer_by_email(email)
+            update_user_with_stripe_customer_id(user, stripe_customer_id)
+        elif req['type'] == 'customer.subscription.created':
+            print(req['data'])
+        elif req['type'] == 'invoice.payment_succeeded':
+            print('invoice.payment_succeeded: ', req)
+
+
+
 
         data = {
             'message': 'subscription succeeded'
@@ -134,10 +154,13 @@ class CustomerPortalSession(APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def post(self, request):
+        print(request.user)
         user_info = json.load(request)
+        print("EMAIL: ", user_info)
         try:
             stripe_id = request.user.stripe_id
             customer = get_stripe_customer(request.user)
+            print("CUSTOMER: ", customer)
             # This is the URL to which the customer will be redirected after they are
             # done managing their billing with the portal.
             return_url = f"{FRONTEND_DOMAIN_URL}"

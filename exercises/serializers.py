@@ -47,7 +47,7 @@ class ExerciseSerializer(object):
                     'difficulty_level': ab_exercise.difficulty_level,
                     'equipment': ab_exercise.equipment,
                     'resistance_type': ab_exercise.resistance_type,
-                    'image_url': exercise.demo_src,
+                    'image_url': ab_exercise.demo_src,
                     'id': ab_exercise.id,
                     'quantity': ab_exercise.quantity
                 })
