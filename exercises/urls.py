@@ -6,7 +6,6 @@ from .script import add_source_gif
 
 urlpatterns = [
     path('login', Login.as_view()),
-    path('all-workouts', Login.as_view()),
     path('today', get_daily_workout),
     path('exercises', GetExercises.as_view()),
     path('run', run_script),

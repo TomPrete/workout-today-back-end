@@ -41,17 +41,17 @@ class WorkoutExercise(models.Model):
     def __str__(self):
         return f"{self.workout.workout_target} - {self.workout.workout_date}: {self.exercise.name} ({self.order})"
 
-class DailyWorkouts(models.Model):
+class DailyWorkout(models.Model):
     workout_date = models.DateField()
     total_workouts = models.IntegerField()
     status = models.CharField(max_length=8)
 
-class FavoriteWorkouts(models.Model):
+class FavoriteWorkout(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users')
     workout = models.ForeignKey(Workout, on_delete=models.CASCADE, related_name='favorite_workouts')
 
     def __str__(self):
-        return f"{self.workout}"
+        return f"ID: {self.id} - {self.workout} - {self.user}"
 
 class UserExercise(models.Model):
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE, related_name='user_exercises_info')

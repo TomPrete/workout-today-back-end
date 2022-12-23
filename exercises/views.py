@@ -4,7 +4,8 @@ from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from exercises.serializers import ExerciseSerializer, WorkoutSerializer, UserExerciseSerializer
 from .workout_generator import get_exercises_for_workout, no_repeat_target_muscle, previous_workout_two_days_ago, generate_ab_workout
-from exercises.models import Exercise, FavoriteWorkouts, UserExercise, Workout, WorkoutExercise, DailyWorkouts
+from exercises.models import Exercise, FavoriteWorkout, UserExercise, Workout, WorkoutExercise, DailyWorkout
+from exercises.forms.favorite_workout_form import FavoriteWorkoutForm
 from django.shortcuts import redirect, get_object_or_404
 from .script import run_migrations
 from workout_today.views import page_not_found_view
@@ -134,12 +135,12 @@ def start_workout(request):
     if request.method == 'POST':
         status = json.load(request)
         try:
-            daily_workout = DailyWorkouts.objects.get(workout_date=date.today(), status=status)
+            daily_workout = DailyWorkout.objects.get(workout_date=date.today(), status=status)
             total_daily_workouts = daily_workout.total_workouts
             daily_workout.total_workouts = total_daily_workouts + 1
             daily_workout.save()
         except:
-            DailyWorkouts.objects.create(workout_date=date.today(), status=status, total_workouts=1)
+            DailyWorkout.objects.create(workout_date=date.today(), status=status, total_workouts=1)
 
         return JsonResponse(data = { 'message': 'success'}, status=200)
 
@@ -203,9 +204,9 @@ class MoreWorkouts(APIView):
             for workout in workouts_query:
                 try:
                     favorites = workout.favorite_workouts.get(user=request.user)
-                except FavoriteWorkouts.DoesNotExist:
+                except FavoriteWorkout.DoesNotExist:
                     favorites = None
-                print(favorites)
+                print('Favorites: ', favorites)
                 workout_serializer = WorkoutSerializer(workout)
                 past_workouts.append(workout_serializer.data)
             print(past_workouts)
@@ -273,23 +274,12 @@ class FavoriteUserWorkout(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
-    def get(self, request, format=None):
-        us_east = pytz.timezone("America/New_York")
-        east_coast_time = datetime.now(us_east)
-        one_day = datetime.now(us_east) - timedelta(days=1)
-        two_days = datetime.now(us_east) - timedelta(days=2)
-        three_days = datetime.now(us_east) - timedelta(days=3)
+    def get(self, request, user_id, workout_id, format=None):
         try:
-            date = request.query_params.get('date') or None
-            if date:
-                past_workout = get_past_workout(date)
-                return past_workout
-            workouts_query = Workout.objects.filter(workout_date__range=(three_days, east_coast_time)).exclude(workout_target='abs')
-            past_workouts = []
-            for workout in workouts_query:
-                workout_serializer = WorkoutSerializer(workout)
-                past_workouts.append(workout_serializer.data)
-            return Response(past_workouts, status=200)
+            if does_favorite_workout_exist(user_id, workout_id):
+                return Response({'message': 'User has favorited this workout', 'is_favorite': True}, status=200)
+            else:
+                return Response({'message': 'User has NOT favorited this workout', 'is_favorite': False}, status=200)
         except Exception as e:
             data = {
                 'message': e
@@ -298,14 +288,26 @@ class FavoriteUserWorkout(APIView):
 
     def post(self, request, user_id, workout_id, format=None):
         try:
+            print(request)
             query = request.query_params.get('query')
+            print("QUERY: ", query)
             if query == 'favorite':
-                favorite_workout = FavoriteWorkouts(user=request.user, workout=workout_id)
-                if favorite_workout.is_valid:
+                print("USER: ", request.user)
+                favorite_workout = FavoriteWorkout(user=request.user, workout=Workout.objects.get(id=workout_id))
+                print("favorite_workout: ", favorite_workout)
+                form = FavoriteWorkoutForm(instance=favorite_workout)
+                if form.is_valid:
                     workout = favorite_workout.save()
-                    print(workout)
-            print(len(favorite_workout))
-            return Response({'message': 'success'}, status=200)
+                    print("workout: ", workout)
+                    return Response({'message': 'success'}, status=200)
+                return Response({'message': 'failed to save favorite workout'}, status=200)
+
+            if query == 'unfavorite':
+                favorite_workout = FavoriteWorkout.objects.get(user=request.user, workout=Workout.objects.get(id=workout_id))
+                favorite_workout.delete()
+                form = FavoriteWorkoutForm(instance=favorite_workout)
+                return Response({'message': 'success'}, status=200)
+
         except Exception as e:
             data = {
                 'message': e
@@ -313,7 +315,7 @@ class FavoriteUserWorkout(APIView):
             return Response(data, status=200)
 
 def does_favorite_workout_exist(user_id, workout_id):
-    favorite_workout = FavoriteWorkouts.objects.filter(user=user_id, workout=workout_id)
+    favorite_workout = FavoriteWorkout.objects.filter(user=user_id, workout=workout_id)
     return True if len(favorite_workout) == 1 else False
 
 class UserExerciseRecord(APIView):
