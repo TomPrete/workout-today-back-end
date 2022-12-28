@@ -13,13 +13,14 @@ import os
 import stripe
 from mixpanel import Mixpanel
 
+development = False
+
 mp = Mixpanel('c9b89c7bf5d74371eaa2dbf629c20821')
 
 stripe.api_key = 'sk_test_51LTVzmCxk3VOyNJUcsZ4S3O5C7y1p6tLcLw37L17reSYaZyIdSlUxMMKkboTgXo0sePUsYoJ5QdSEVvqiDAHJv6G00e0wdArHg'
 
-endpoint_secret = 'whsec_ba7c25d90b4323378364b4c666d220db1656797062019a8906503f12a044e513'
+endpoint_secret = 'whsec_rd1mbEL14ElEoG44dS26IH9BGIvRgZF3' if development == False else 'whsec_ba7c25d90b4323378364b4c666d220db1656797062019a8906503f12a044e513'
 
-development = False
 
 FRONTEND_DOMAIN_URL = "https://app.workouttoday.co/" if development == False else 'http://localhost:3000/'
 
