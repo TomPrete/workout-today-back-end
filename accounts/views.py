@@ -27,7 +27,7 @@ import pytz
 from mixpanel import Mixpanel
 
 mp = Mixpanel('c9b89c7bf5d74371eaa2dbf629c20821')
-development = True
+development = False
 
 stripe.api_key = 'sk_test_51LTVzmCxk3VOyNJUcsZ4S3O5C7y1p6tLcLw37L17reSYaZyIdSlUxMMKkboTgXo0sePUsYoJ5QdSEVvqiDAHJv6G00e0wdArHg'
 
