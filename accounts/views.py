@@ -91,7 +91,7 @@ def reset_password(request):
     print(request.user)
     try:
         if request.method == 'POST':
-            user = find_customer_by_email(request.data['email'])
+            user = find_customer_by_email(request.data['email'].lower())
             if user:
                 id_base36 = int_to_base36(user.id)
                 reset_token = uuid.uuid4().hex
@@ -99,14 +99,14 @@ def reset_password(request):
                 user.token_created_at = timezone.now()
                 user.save()
                 template = render_to_string('reset_password.html', {
-                    'email': user.email,
+                    'email': user.email.lower(),
                 'url': f"{FRONTEND_DOMAIN_URL}reset-password/{id_base36}/{user.reset_token}"
                 })
                 email = EmailMessage(
                     'Workout Today: RESET PASSWORD REQUEST',
                     template,
                     settings.EMAIL_HOST_USER,
-                    [user.email]
+                    [user.email.lower()]
                 )
                 email.fail_silently = False
                 email.send()
@@ -130,43 +130,44 @@ def reset_password_confirm(request, base_id, uuid):
             return Response({'message': 'valid'})
 
     if request.method == "POST":
-        print("HERE: ", base_id, uuid)
         user_id = base36_to_int(str(base_id))
         reset_pw_token = uuid
-        user = User.objects.filter(id=user_id).first()
+        # user = User.objects.filter(id=user_id).first()
         reset_user = User.objects.filter(reset_token=reset_pw_token).first()
-        print(user)
-        print(reset_user)
-        if not user or not reset_user:
+        if not reset_user:
             return Response({'message': 'There was an issue updating your password', 'status': 400})
-        if user.id != reset_user.id:
-            return Response({'message': 'There was an issue updating your password', 'status': 400})
+        # if not user or not reset_user:
+        #     return Response({'message': 'There was an issue updating your password', 'status': 400})
+        # if user.id != reset_user.id:
+        #     return Response({'message': 'There was an issue updating your password', 'status': 400})
         if request.data['password'] == request.data['passwordTwo']:
             try:
-                validate_password(request.data['password'], user=user)
+                validate_password(request.data['password'], user=reset_user)
             except Exception as e:
                 print("EXCEPTIONS")
                 return Response({'message': e, 'status': 500})
-            user.set_password(request.data['password'])
-            user.reset_token = None
-            user.token_created_at = None
-            user.save()
-            mp.track(user.id, 'reset_password_updated')
+            reset_user.set_password(request.data['password'])
+            reset_user.reset_token = None
+            reset_user.token_created_at = None
+            reset_user.save()
+            mp.track(reset_user.id, 'reset_password_updated')
             return Response({'message': 'Password updated', 'status': 200})
         else:
             return Response({'message': 'New Password & Password confirmation must match ', 'status': 400})
 
 def _can_reset_password(base_id, uuid):
     us_east = pytz.timezone("America/New_York")
-    user_id = base36_to_int(str(base_id))
+    # user_id = base36_to_int(str(base_id))
     reset_pw_token = uuid
-    user = User.objects.filter(id=user_id).first()
+    # user = User.objects.filter(id=user_id).first()
     reset_user = User.objects.filter(reset_token=reset_pw_token).first()
-    if not user or not reset_user:
-        return False
+    # if not user or not reset_user:
+    #     return False
+    # if user.id != reset_user.id:
+    #     return False
     if datetime.now(us_east) > (reset_user.token_created_at + timedelta(minutes=5)):
         return False
-    if user.id != reset_user.id:
+    if not reset_user:
         return False
     return True
 
