@@ -27,7 +27,7 @@ import pytz
 from mixpanel import Mixpanel
 
 mp = Mixpanel('c9b89c7bf5d74371eaa2dbf629c20821')
-development = False
+development = True
 
 stripe.api_key = 'sk_test_51LTVzmCxk3VOyNJUcsZ4S3O5C7y1p6tLcLw37L17reSYaZyIdSlUxMMKkboTgXo0sePUsYoJ5QdSEVvqiDAHJv6G00e0wdArHg'
 
@@ -122,15 +122,15 @@ def reset_password(request):
 @api_view(["GET", "POST"])
 @authentication_classes([])
 @permission_classes([])
-def reset_password_confirm(request, base_id, uuid):
+def reset_password_confirm(request, uuid):
     if request.method == "GET":
-        if not _can_reset_password(base_id, uuid):
+        if not _can_reset_password(uuid):
             return Response({'message': 'expired', 'status': 400})
         else:
             return Response({'message': 'valid'})
 
     if request.method == "POST":
-        user_id = base36_to_int(str(base_id))
+        # user_id = base36_to_int(str(base_id))
         reset_pw_token = uuid
         # user = User.objects.filter(id=user_id).first()
         reset_user = User.objects.filter(reset_token=reset_pw_token).first()
@@ -155,7 +155,7 @@ def reset_password_confirm(request, base_id, uuid):
         else:
             return Response({'message': 'New Password & Password confirmation must match ', 'status': 400})
 
-def _can_reset_password(base_id, uuid):
+def _can_reset_password(uuid):
     us_east = pytz.timezone("America/New_York")
     # user_id = base36_to_int(str(base_id))
     reset_pw_token = uuid
