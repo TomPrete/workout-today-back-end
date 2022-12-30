@@ -318,6 +318,29 @@ def does_favorite_workout_exist(user_id, workout_id):
     favorite_workout = FavoriteWorkout.objects.filter(user=user_id, workout=workout_id)
     return True if len(favorite_workout) == 1 else False
 
+class AllUsersFavoriteWorkout(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def get(self, request, user_id, format=None):
+        try:
+            favorite_user_workouts = request.user.users_favorite.all()
+            favorite_workouts = []
+            for fav_workout in favorite_user_workouts:
+                print(fav_workout.workout)
+                workout_serializer = WorkoutSerializer(fav_workout.workout)
+                favorite_workouts.append(workout_serializer.data)
+            data = {
+                'favorite_workouts': favorite_workouts,
+                'total_favorite_workouts': len(favorite_workouts),
+            }
+            return Response(data, status=200)
+        except Exception as e:
+            data = {
+                'message': e
+            }
+            return Response(data, status=500)
+
 class UserExerciseRecord(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]

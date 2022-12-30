@@ -6,6 +6,9 @@ class User(AbstractUser):
     is_premium = models.BooleanField(null=True, blank=True, default=False)
     stripe_id = models.CharField(max_length=100, blank=True, null=True)
     subscription_end_date = models.DateField(blank=True, null=True)
+    reset_token = models.CharField(max_length=40, blank=True, null=True)
+    token_created_at = models.DateTimeField(blank=True, null=True)
+
 class Exercise(models.Model):
     name = models.CharField(max_length=50)
     muscle_target = models.CharField(max_length=20)
@@ -47,7 +50,7 @@ class DailyWorkout(models.Model):
     status = models.CharField(max_length=8)
 
 class FavoriteWorkout(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users_favorite')
     workout = models.ForeignKey(Workout, on_delete=models.CASCADE, related_name='favorite_workouts')
 
     def __str__(self):

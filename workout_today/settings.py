@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'accounts',
     'exercises',
+    'staff',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
@@ -96,6 +97,16 @@ TEMPLATES = [
     },
 ]
 
+MAILCHIMP_API_KEY = '63e2c86da165db6c439e2259221a0049-us8'
+MAILCHIMP_REGION = 'us8'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'tom@workouttoday.co'
+EMAIL_HOST_PASSWORD = 'zgnnarfkhctzerhn'
+
 WSGI_APPLICATION = 'workout_today.wsgi.application'
 
 
@@ -136,12 +147,12 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 # allauth registration
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 SITE_ID = 1
 
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
+# ACCOUNT_AUTHENTICATION_METHOD = 'email'
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_USERNAME_REQUIRED = False
 
 # Simple JWT
 SIMPLE_JWT = {

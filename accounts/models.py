@@ -7,3 +7,7 @@ class Product(models.Model):
 class Price(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='products')
     price = models.IntegerField(null=True, blank=True,)
+
+class ResetToken(models.Model):
+    pass
+
