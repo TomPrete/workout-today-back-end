@@ -109,7 +109,10 @@ def reset_password(request):
                     [user.email.lower()]
                 )
                 email.fail_silently = False
-                email.send()
+                try:
+                    email.send()
+                except:
+                    return Response({'message': 'There was an issue', 'status': 400})
                 return Response({'message': 'RESET PASSWORD', 'status': 200})
             else:
                 return Response({'message': 'USER NOT FOUND', 'status': 404})
