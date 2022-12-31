@@ -165,9 +165,9 @@ def _can_reset_password(uuid):
     #     return False
     # if user.id != reset_user.id:
     #     return False
-    if datetime.now(us_east) > (reset_user.token_created_at + timedelta(minutes=5)):
-        return False
     if not reset_user:
+        return False
+    if datetime.now(us_east) > (reset_user.token_created_at + timedelta(minutes=5)):
         return False
     return True
 
@@ -272,11 +272,14 @@ class SubscriptionWebhook(APIView):
         elif event['type'] == 'customer.subscription.deleted':
             stripe_id = event['data']['object']['customer']
             user = find_customer_by_stripe_id(stripe_id)
-            if user.is_premium == True:
-                user.is_premium = False
-                user.save()
+            if user:
+                if user.is_premium == True:
+                    user.is_premium = False
+                    user.save()
+                else:
+                    print("Customer already is premium")
             else:
-                print("Customer already is premium")
+                print("unable to find user")
         elif event['type'] == 'payment_intent.payment_failed':
             payment_intent = event['data']['object']
 
