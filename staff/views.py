@@ -13,3 +13,6 @@ class GetExercises(View):
 
     def put(self, request):
         pass
+
+def login(request):
+    return render(request, )
