@@ -88,7 +88,6 @@ def change_password(request):
 @authentication_classes([])
 @permission_classes([])
 def reset_password(request):
-    print(request.user)
     try:
         if request.method == 'POST':
             user = find_customer_by_email(request.data['email'].lower())
@@ -157,6 +156,9 @@ def reset_password_confirm(request, uuid):
             return Response({'message': 'Password updated', 'status': 200})
         else:
             return Response({'message': 'New Password & Password confirmation must match ', 'status': 400})
+
+def account_confirm_email(request):
+    Response({'message': 'Email confirmation confirmed'})
 
 def _can_reset_password(uuid):
     us_east = pytz.timezone("America/New_York")

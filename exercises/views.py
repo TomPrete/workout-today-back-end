@@ -46,9 +46,6 @@ def run_script(request):
     return HttpResponse("Completed")
 
 def generate_workout(request):
-    print("USER: ", request.user.is_authenticated)
-    print("USER: ", request.user)
-    print("USER: ", request.user.is_staff)
     if request.method == "GET":
         us_east = pytz.timezone("America/New_York")
         east_coast_time = datetime.now(us_east)
@@ -108,6 +105,7 @@ def get_daily_workout(request):
     try:
         if request.method == "GET":
             workout = Workout.objects.filter(workout_date=east_coast_time).exclude(workout_target='abs')[0]
+            # print("WORKOUT: ", workout)
             ab_workout = Workout.objects.filter(workout_target='abs').last()
             workout_exercises_object = WorkoutExercise.objects.filter(workout=workout).order_by('order')
             ab_exercises_object = WorkoutExercise.objects.filter(workout=ab_workout).order_by('order')
@@ -122,9 +120,9 @@ def get_daily_workout(request):
             # print(workout_data.data)
             return JsonResponse(data = serialized_workout, status=200)
     except Exception as e:
-        print("EXCEPTION: ", e)
         data = {
-            'message': e
+            'message': 'There was an error',
+            'error': True
         }
         return JsonResponse(data=data, status=500)
 
@@ -188,14 +186,17 @@ class MoreWorkouts(APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get(self, request, format=None):
-        print("USER: ", request.user)
         us_east = pytz.timezone("America/New_York")
         east_coast_time = datetime.now(us_east)
         three_days = datetime.now(us_east) - timedelta(days=3)
         try:
             date = request.query_params.get('date') or None
-            if date:
+            workout_type = request.query_params.get('workoutType') or None
+            if date and workout_type != 'abs':
                 past_workout = get_past_workout(date)
+                return past_workout
+            if date and workout_type == 'abs':
+                past_workout = get_workout(date, workout_type)
                 return past_workout
             workouts_query = Workout.objects.filter(workout_date__range=(three_days, east_coast_time)).exclude(workout_target='abs')
             # print(workouts_query)
@@ -206,10 +207,8 @@ class MoreWorkouts(APIView):
                     favorites = workout.favorite_workouts.get(user=request.user)
                 except FavoriteWorkout.DoesNotExist:
                     favorites = None
-                print('Favorites: ', favorites)
                 workout_serializer = WorkoutSerializer(workout)
                 past_workouts.append(workout_serializer.data)
-            print(past_workouts)
             return Response(past_workouts, status=200)
         except Exception as e:
             print("EXCEPTION: ", e)
@@ -218,14 +217,31 @@ class MoreWorkouts(APIView):
             }
             return Response(data, status=500)
 
+def get_workout(date, workout_type):
+    try:
+        workout = Workout.objects.filter(workout_date=date, workout_target=workout_type)[0]
+        workout_exercises_object = WorkoutExercise.objects.filter(workout=workout).order_by('order')
+        workout_exercises = []
+        ab_workout_exercises = []
+        workout_target = workout.workout_target.split('-')
+        for exercise in workout_exercises_object:
+            workout_exercises.append(exercise.exercise)
+        serialized_workout = ExerciseSerializer(workout_exercises, workout, workout.total_rounds, ab_workout_exercises).all_exercises
+        return Response(serialized_workout, status=200)
+    except Exception as e:
+        print("EXCEPTION: ", e)
+        data = {
+            'message': e
+        }
+        return Response(data, status=500)
+
+
 def get_past_workout(date):
-    print("USER: ", )
     try:
         workout = Workout.objects.filter(workout_date=date).exclude(workout_target='abs')[0]
         ab_workout = Workout.objects.filter(workout_target='abs').last()
         workout_exercises_object = WorkoutExercise.objects.filter(workout=workout).order_by('order')
         ab_exercises_object = WorkoutExercise.objects.filter(workout=ab_workout).order_by('order')
-        print(workout_exercises_object)
         workout_exercises = []
         ab_workout_exercises = []
         workout_target = workout.workout_target.split('-')
@@ -288,17 +304,12 @@ class FavoriteUserWorkout(APIView):
 
     def post(self, request, user_id, workout_id, format=None):
         try:
-            print(request)
             query = request.query_params.get('query')
-            print("QUERY: ", query)
             if query == 'favorite':
-                print("USER: ", request.user)
                 favorite_workout = FavoriteWorkout(user=request.user, workout=Workout.objects.get(id=workout_id))
-                print("favorite_workout: ", favorite_workout)
                 form = FavoriteWorkoutForm(instance=favorite_workout)
                 if form.is_valid:
                     workout = favorite_workout.save()
-                    print("workout: ", workout)
                     return Response({'message': 'success'}, status=200)
                 return Response({'message': 'failed to save favorite workout'}, status=200)
 
@@ -327,7 +338,6 @@ class AllUsersFavoriteWorkout(APIView):
             favorite_user_workouts = request.user.users_favorite.all()
             favorite_workouts = []
             for fav_workout in favorite_user_workouts:
-                print(fav_workout.workout)
                 workout_serializer = WorkoutSerializer(fav_workout.workout)
                 favorite_workouts.append(workout_serializer.data)
             data = {
