@@ -1,4 +1,6 @@
+from django.shortcuts import render
 from .models import Workout, Exercise, WorkoutExercise
+from django.http import HttpResponse
 import os
 import csv
 my_path = os.path.abspath(os.path.dirname(__file__))
@@ -9,25 +11,25 @@ def run_migrations():
     with open(path, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            print(row['name'])
-            if row['equipment'] == None:
-                    equipment_type = False
+            print(row['equipment'])
+            if row['equipment'] == 'False':
+                equipment_type = False
             if row['equipment'] == 'True':
                 equipment_type = True
             try:
-                exercise = Exercise.objects.get(name=row['name'])
+                exercise = Exercise.objects.get(id=row['id'])
                 exercise.muscle_target = row['muscle_target']
                 exercise.secondary_target = row['secondary_target']
                 exercise.muscle_group = row['muscle_group']
                 exercise.push_pull = row['push_pull']
                 exercise.difficulty_level = 0
-                if row['equipment'] == None:
+                if row['equipment'] == 'False':
                     exercise.equipment = False
                 if row['equipment'] == 'True':
                     exercise.equipment = True
                 exercise.resistance_type = row['resistance_type']
                 exercise.quantity = row['quantity']
-                exercise.demo_src = row['img']
+                exercise.demo_src = row['demo_src']
                 exercise.save()
             except:
                 Exercise.objects.create(
@@ -40,7 +42,7 @@ def run_migrations():
                     equipment = equipment_type,
                     resistance_type = row['resistance_type'],
                     quantity = row['quantity'],
-                    demo_src = row['img']
+                    demo_src = row['demo_src']
                     )
     print("Executed...")
     return True
@@ -52,3 +54,37 @@ def add_source_gif(request):
         exercise.demo_src = 'https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif'
         exercise.save()
     return 'complete'
+
+
+def write_exercises_to_csv(request):
+    if request.method == 'POST':
+        all_exercises_query = Exercise.objects.all()
+        all_exercises = []
+        for exercise in all_exercises_query:
+            individual_exercise = {
+                "id": exercise.id,
+                "name": exercise.name,
+                "muscle_target": exercise.muscle_target,
+                "secondary_target": exercise.secondary_target,
+                "push_pull": exercise.push_pull,
+                "muscle_group": exercise.muscle_group,
+                "difficulty_level": exercise.difficulty_level,
+                "equipment": exercise.equipment,
+                "resistance_type": exercise.resistance_type,
+                "demo_src": exercise.demo_src,
+                "quantity": exercise.quantity
+            }
+            all_exercises.append(individual_exercise)
+        write_to_csv(all_exercises)
+        return HttpResponse("Done")
+
+    if request.method == "GET":
+        return render(request, 'admin/write_to_csv.html', {})
+
+def write_to_csv(exercise_arr):
+    with open(path, 'w') as file:
+        exercise_csv = csv.writer(file)
+        exercise_csv.writerow(['id','name','muscle_target','secondary_target','push_pull','muscle_group','diffulty_level','equipment','resistance_type','demo_src','quantity'])
+        for exercise in exercise_arr:
+            exercise_csv.writerow([exercise['id'],exercise['name'],exercise['muscle_target'],exercise['secondary_target'],exercise['push_pull'],exercise['muscle_group'],exercise['difficulty_level'],exercise['equipment'],exercise['resistance_type'],exercise['demo_src'],exercise['quantity']])
+    return True
