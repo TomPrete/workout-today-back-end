@@ -25,7 +25,7 @@ def run_migrations(request):
                 exercise.muscle_group = row['muscle_group']
                 exercise.push_pull = row['push_pull']
                 exercise.difficulty_level = 0
-                if row['equipment'] != 'True':
+                if row['equipment'] != 'TRUE':
                     exercise.equipment = False
                 if row['equipment'] == 'TRUE':
                     exercise.equipment = True
