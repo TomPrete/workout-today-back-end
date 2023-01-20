@@ -42,7 +42,7 @@ class GetExercises(View):
         return render(request, 'exercises/exercise_list.html', {'exercise_list': exercise_list})
 
 def run_script(request):
-    run_migrations()
+    run_migrations(request)
     return HttpResponse("Completed")
 
 def generate_workout(request):

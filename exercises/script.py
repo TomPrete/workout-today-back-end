@@ -7,7 +7,7 @@ import csv
 my_path = os.path.abspath(os.path.dirname(__file__))
 path = os.path.join(my_path, "exercises.csv")
 
-def run_migrations():
+def run_migrations(request):
     with open(path, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
@@ -35,18 +35,7 @@ def run_migrations():
                 exercise.save()
             except:
                 print("HERE")
-                # Exercise.objects.create(
-                #     name=row['name'],
-                #     muscle_target=row['muscle_target'],
-                #     secondary_target=row['secondary_target'],
-                #     push_pull=row['push_pull'],
-                #     muscle_group=row['muscle_group'],
-                #     difficulty_level = 1,
-                #     equipment = equipment_type,
-                #     resistance_type = row['resistance_type'],
-                #     quantity = row['quantity'],
-                #     demo_src = row['demo_src']
-                #     )
+                return HttpResponse(f"There was an error with Exercise: {exercise.id}")
     print("Executed...")
     return True
 
