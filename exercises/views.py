@@ -42,8 +42,11 @@ class GetExercises(View):
         return render(request, 'exercises/exercise_list.html', {'exercise_list': exercise_list})
 
 def run_script(request):
-    run_migrations(request)
-    return HttpResponse("Completed")
+    if request.user.is_authenticated and request.user.is_staff:
+        run_migrations(request)
+        return HttpResponse("Completed")
+    else:
+        return HttpResponse("Unauthorized")
 
 def generate_workout(request):
     if request.method == "GET":
