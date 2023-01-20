@@ -8,7 +8,6 @@ my_path = os.path.abspath(os.path.dirname(__file__))
 path = os.path.join(my_path, "exercises.csv")
 
 def run_migrations():
-
     with open(path, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
