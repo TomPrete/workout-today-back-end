@@ -1,161 +1,161 @@
 id,name,muscle_target,secondary_target,push_pull,muscle_group,diffulty_level,equipment,resistance_type,demo_src,quantity
-47,Concentration Curls,biceps,,pull,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-49,Open Arm Curls,biceps,,pull,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-50,Alternating Bent-over pull,back,biceps,pull,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-51,Chin-Ups,back ,biceps,pull,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,Max reps
-52,Hammer Curls,biceps,,pull,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-53,Curl-Up/Hammer Downs,biceps,,pull,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-54,Superman,back,,N/A,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,5 reps (10 secs each)
-55,Strip-Set Curls,biceps,,pull,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-56,In-Out Hammer Curls,biceps,,pull,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-57,Dumbell Pull Over,back,,pull,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-58,Elevated Plank Row Hold,back ,core,N/A,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,30 sec.
-59,Incline chest Press,chest,,push,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-60,Drop Squat,legs,cardio,N/A,lower,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,30 sec.
-61,Sit Squat Jump,legs,cardio,N/A,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,30 sec.
-62,Split Jump,legs ,cardio,N/A,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,30 sec.
-63,High-Knee Run,cardio,legs,N/A,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,30 sec.
-64,Butt Kicker,cardio,legs,N/A,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,30 sec.
-65,Skater Jump,cardio,legs,N/A,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,30 sec.
-66,Super Skater Jump,cardio,legs,N/A,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-67,Sprinter Skip,cardio,legs,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-68,Runner Lunge,legs,cardio,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-69,Long Jump Backward Hop,cardio,legs,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-70,In-and-Out Squat,legs,cardio,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-71,Single-leg Swing,legs,cardio,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-72,Low Rotational Chop,legs ,cardio,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-73,Mountain Climber Switch,cardio,legs,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-75,Spider Mountain Climber,cardio,legs,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-76,Diagonal Mountain Climber,cardio,legs,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-77,Semicircle Mountain Climber,cardio,legs,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-78,Jumping Mountain Climber,cardio,legs,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-79,Low Jumping Mountain Climber,cardio,legs,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-81,Seal Jack,cardio,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-82,Jumping Jacks,cardio,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-83,Cross-Body Jumping Jack,cardio,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-80,Blast-off Push-Ups,chest,legs,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,
-84,Preditor Jacks,cardio,legs,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-85,Plank Jacks,cardio,core,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-87,Low Box Runner / Soccor,cardio,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+112,1-Leg Slalom,legs,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+113,1-Leg Squat,legs,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
 88,360 Ball Runner / Soccor,cardio,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-89,Low Box Lateral Runner,cardio,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-86,Push-Up Jacks,chest,triceps,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,
-46,Elbows-Out Lawnmower pull,back,,pull,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-94,Pogo Jump,cardio,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+136,Abergnome,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+120,Adductor Lunge,legs,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+149,Airplane Abs,abs,,,core,1,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+119,Albanian Squat,legs,,,lower,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+50,Alternating Bent-over pull,back,biceps,pull,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/alternating_bent_over_pulls.gif,8-10 reps
+24,Alternating Curls,biceps,,pull,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
+92,Alternating Fast Feed,cardio,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+14,Alternating Shoulder Press,shoulders,,push,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/alternating_shoulder_press.gif,8-10 reps
+117,Alternating Side Lunges,legs,,,lower,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+12,Back Flys,back,,pull,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/back_flys.gif,8-10 reps
+131,Banana Knee Straight Leg Crunch,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+122,Banana Two Crunch,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+123,Bicycles,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+80,Blast-off Push-Ups,chest,legs,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,
+146,Blast-off pushup,chest,legs,,lower,1,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/blast_off_push_up.gif,60 sec.
+138,Bug Bicycle Crunch,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+90,Burpee,cardio,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/burpee.gif,60 sec.
+111,Burpee Knee Tuck,legs,cardio,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+64,Butt Kicker,cardio,legs,N/A,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/butt_kicker.gif,30 sec.
+121,Calf Raises,legs,,,lower,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+19,Chair Dips,triceps,shoulders,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/chair_dips.gif,60 sec.
+51,Chin-Ups,back,biceps,pull,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,Max reps
+40,Clap or Plyo Push-Ups,chest,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+6,Close Grip Overhand Pull-Ups,back,biceps,pull,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+47,Concentration Curls,biceps,,pull,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/lower_stance_concnetration_curls.gif,8-10 reps
+125,Cross Leg / Wide Leg Sit-ups,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+152,Cross Toe Touch,abs,,,core,1,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+83,Cross-Body Jumping Jack,cardio,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/cross_body_jumping_jacks.gif,60 sec.
+142,Crunch,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+137,Crunchy Frog,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+53,Curl-Up/Hammer Downs,biceps,,pull,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/curl_up_hammer_down.mp4,8-10 reps
+7,Decline Push-Ups,chest,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+17,Deep Swimmer's Press,shoulders,,push,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/deep_swimmers_press.gif,8-10 reps
+76,Diagonal Mountain Climber,cardio,legs,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/diagonal_mountain_climber.gif,60 sec.
+9,Diamond Push-Ups,chest,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/diamond_pushups.gif,60 sec.
+11,Dive-bomber Push-Ups,chest,,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/dive_bomber_pushups.gif,8-12 reps
+60,Drop Squat,legs,cardio,N/A,lower,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/drop_squat.gif,30 sec.
+44,Dumbbell Cross-Body Blows,triceps,biceps,push,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/dumb_bell_cross_body_blows.gif,8-10 reps
+57,Dumbell Pull Over,back,,pull,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/dumbbell_pull_over.gif,8-10 reps
+46,Elbows-Out Lawnmower pull,back,,pull,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/elbow_out_lawn_mowers.gif,8-10 reps
+58,Elevated Plank Row Hold,back,core,N/A,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/elevated_plan_row_hold.gif,30 sec.
+156,Extended Plank,abs,,,core,1,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+109,Fast Feet Chair Jump,legs,cardio,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+22,Flip-grip Twist Tricep Kickbacks,triceps,,push,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
+33,Floor Flys,chest,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+43,Fly-Row Presses,shoulders,,Both,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
+106,Foot Tuck Jump,legs,cardio,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+41,Front-to-Back Tricep Extensions,triceps,,push,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/in_out_tricep_extensions.mp4,8-10 reps
+155,Full Body Fly,abs,,,core,1,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+18,Full Suspension Concentration Curls,biceps,,pull,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/full_suspension_curls.gif,8-10 reps
+134,Gate Bridge Lift,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+52,Hammer Curls,biceps,,pull,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/hammer_curls.gif,8-10 reps
+8,Heavy Pants,back,,pull,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/heavy_pants.gif,8-10 reps
+63,High-Knee Run,cardio,legs,N/A,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/high_knee_run.gif,30 sec.
+132,Hip Rock & Raise,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+15,In & Out Bicep Curls,biceps,,pull,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/in_out_bicep_curls.mp4,8-10 reps
+27,In & Out Straight Arm Shoulder Flys,shoulders,,push,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/in_out_straight_arm_shoulder_flys.gif,8-10 reps
+70,In-and-Out Squat,legs,cardio,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/in_out_squat.gif,60 sec.
+56,In-Out Hammer Curls,biceps,,pull,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/in_out_hammer_curls.gif,8-10 reps
+150,Inch Worm,abs,,,core,1,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+59,Incline chest Press,chest,,push,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
+82,Jumping Jacks,cardio,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/jumping_jacks.gif,60 sec.
+78,Jumping Mountain Climber,cardio,legs,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/jumping_mountain_climber.gif,60 sec.
+105,Knee Tuck Jump,legs,cardio,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+153,L Sit,abs,,,core,1,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+91,Lateral 3-Step,cardio,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/lateral_3_step.gif,60 sec.
+10,Lawnmower Pull,back,,pull,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/lawn_mower_pulls.gif,8-10 reps
+160,Leg Swings,hamstrings,,,stretch,1,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+69,Long Jump Backward Hop,cardio,legs,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/long_jump_backward_hop.gif,60 sec.
+89,Low Box Lateral Runner,cardio,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/low_lateral_runner.gif,60 sec.
+87,Low Box Runner / Soccor,cardio,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+79,Low Jumping Mountain Climber,cardio,legs,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/low_jumping_mountain_climbers.gif,60 sec.
+72,Low Rotational Chop,legs,cardio,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/low_rotational_chop.gif,60 sec.
+102,Lunge Runner,legs,cardio,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+26,Lying-down Tricep Extensions,triceps,,push,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/lying_down_tricep_extensions.gif,8-10 reps
+3,Military Push-Ups,chest,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/military_pushups.gif,60 sec.
+73,Mountain Climber Switch,cardio,legs,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/mountain_climbers.gif,60 sec.
+129,Oblique Roll Crunch,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+38,One Arm Push-Ups,chest,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+42,One-Arm Balance Push-Ups,chest,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/one_arm_balance_pushups.gif,60 sec.
+49,Open Arm Curls,biceps,,pull,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/open_arm_curls.gif,8-10 reps
+34,Overhead Tricep Extensions,triceps,,push,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/overhead_tricep_extensions.gif,8-10 reps
+32,Pike Presses,shoulders,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/pike_press.gif,60 sec.
+31,Plange Push-Ups,chest,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/plange_pushups.gif,60 sec.
+97,Plank Elbow Tap,core,chest,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
 96,Plank Hand Tap,core,chest,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
 99,Plank Hip Tap,core,chest,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-101,Plank Toe Tap,core,chest,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-103,T-Rotation,core,chest,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-105,Knee Tuck Jump,legs,cardio,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-107,Speed Walkout,core ,cardio,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-109,Fast Feet Chair Jump,legs,cardio,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-111,Burpee Knee Tuck,legs,cardio,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-113,1-Leg Squat,legs,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-116,Step-Back Lunges,legs,,,lower,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-118,Single Leg Wall Squat,legs,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-120,Adductor Lunge,legs,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-122,Banana Two Crunch,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-124,Scissor Twist,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-127,Pulse Ups,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-128,V-Up/Roll Up,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-130,Row the Boat,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-135,Scissors Clapper,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-137,Crunchy Frog,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-139,Tornado,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-141,Spiderman Plank,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-144,Side V-Up,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-2,Wide Front Pull-Ups,back,biceps,pull,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-3,Military Push-Ups,chest ,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-4,Reverse Grip Chin-ups,back ,biceps,pull,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-5,Wide Fly Push-Ups,chest,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-6,Close Grip Overhand Pull-Ups,back,biceps,pull,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-7,Decline Push-Ups,chest,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-8,Heavy Pants,back,,pull,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-9,Diamond Push-Ups,chest,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-10,Lawnmower Pull,back,,pull,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-11,Dive-bomber Push-Ups,chest,,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-12 reps
-12,Back Flys,back,,pull,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-13,Shoulder Press,shoulders,,push,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-15,In & Out Bicep Curls,biceps,,pull,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-16,Two-Arm Tricep Kickbacks,triceps,,push,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-17,Deep Swimmer's Press,shoulders,,push,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-18,Full Suspension Concentration Curls,biceps,,pull,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-19,Chair Dips,triceps,shoulders,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-20,Upright Rows,shoulders,,pull,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-21,Static Arm Curls,biceps,,pull,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-92,Alternating Fast Feed,cardio,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-29,Switch Grip pull Ups,back,biceps,pull,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,
-23,Standing Curls,biceps,,pull,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-24,Alternating Curls,biceps,,pull,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-25,Tricep Extensions,triceps,,push,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-27,In & Out Straight Arm Shoulder Flys,shoulders,,push,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-28,Side Tri-Rises,triceps,,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-30,Slow-Motion 3-in-1 Push-Ups,chest,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-31,Plange Push-Ups,chest,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-32,Pike Presses,shoulders,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-33,Floor Flys,chest,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-34,Overhead Tricep Extensions,triceps,,push,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-35,Two Twitch Speed Push-Ups,chest,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-36,Y-Presses,shoulders,,push,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-37,Side-to-Side Push-Ups,chest,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-38,One Arm Push-Ups,chest,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-39,Weighted Circles,shoulders,,N/A,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-40,Clap or Plyo Push-Ups,chest,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-41,Front-to-Back Tricep Extensions,triceps,,push,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-42,One-Arm Balance Push-Ups,chest,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-43,Fly-Row Presses,shoulders,,Both,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-45,Twenty-Ones,biceps,,pull,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,21 reps
-90,Burpee,cardio,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-91,Lateral 3-Step,cardio,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-93,Single Leg Pogo Jump,cardio,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-95,Side to Side Hops,cardio,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-97,Plank Elbow Tap,core,chest,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-98,Plank Shoulder Tap,core,chest,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+85,Plank Jacks,cardio,core,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/plank_jacks.gif,60 sec.
 100,Plank Knee Tap,core,chest,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-102,Lunge Runner,legs,cardio,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-104,Tuck Jump,legs,cardio,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-106,Foot Tuck Jump,legs,cardio,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-108,Wide Leg Tiptoe Squat,legs,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-110,Slalom Line Jump,legs,cardio,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-112,1-Leg Slalom,legs,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-114,Toe Tap 360,cardio,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-115,Wall Squat,legs,cardio,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-117,Alternating Side Lunges,legs,,,lower,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-119,Albanian Squat,legs,,,lower,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-121,Calf Raises,legs,,,lower,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-123,Bicycles,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-126,Side Arm Balance Crunch,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-129,Oblique Roll Crunch,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-131,Banana Knee Straight Leg Crunch,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-1,Standard Push-Ups,chest,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-14,Alternating Shoulder Press,shoulders,,push,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-22,Flip-grip Twist Tricep Kickbacks,triceps,,push,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-26,Lying-down Tricep Extensions,triceps,,push,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-145,Switch Grip Pull Ups,back ,biceps,pull,upper,1,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-44,Dumbbell Cross-Body Blows,triceps,biceps,push,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-48,Reverse Grip Bent-over Rows,back,biceps,pull,upper,0,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
-74,Running Mountain Climber,cardio,legs,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-146,Blast-off pushup,chest,legs,,lower,1,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-147,Pushup Jacks,chest,triceps,,lower,1,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-125,Cross Leg / Wide Leg Sit-ups,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-132,Hip Rock & Raise,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+151,Plank Reach,abs,,,core,1,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+98,Plank Shoulder Tap,core,chest,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+101,Plank Toe Tap,core,chest,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+94,Pogo Jump,cardio,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+84,Preditor Jacks,cardio,legs,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/preditor_jacks.gif,60 sec.
+127,Pulse Ups,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+86,Push-Up Jacks,chest,triceps,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,
+147,Pushup Jacks,chest,triceps,,lower,1,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+48,Reverse Grip Bent-over Rows,back,biceps,pull,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/reverse_grip_rows.gif,8-10 reps
+4,Reverse Grip Chin-ups,back,biceps,pull,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
 133,Roll V Hold,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-134,Gate Bridge Lift,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-136,Abergnome,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-138,Bug Bicycle Crunch,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-140,Twist & Hold,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-142,Crunch,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+130,Row the Boat,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+68,Runner Lunge,legs,cardio,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/runner_lunge.gif,60 sec.
+74,Running Mountain Climber,cardio,legs,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/running_mountain_climbers.gif,60 sec.
+148,Russian Twist,abs,,,core,1,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/running_mountain_climbers.gif,60 sec.
+124,Scissor Twist,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+135,Scissors Clapper,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+81,Seal Jack,cardio,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/seal_jacks.gif,60 sec.
+77,Semicircle Mountain Climber,cardio,legs,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/semicircle_mountain_climbers.gif,60 sec.
+13,Shoulder Press,shoulders,,push,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/shoulder_press.gif,8-10 reps
+126,Side Arm Balance Crunch,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
 143,Side Plank,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-148,Russian Twist,abs,,,core,1,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-149,Airplane Abs,abs,,,core,1,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-150,Inch Worm,abs,,,core,1,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-151,Plank Reach,abs,,,core,1,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-152,Cross Toe Touch,abs,,,core,1,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-153,L Sit,abs,,,core,1,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-154,Standing Cross Knee,abs,,,core,1,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-155,Full Body Fly,abs,,,core,1,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-156,Extended Plank,abs,,,core,1,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-157,Stagger Hand Push-Ups,chest,triceps,,upper,1,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-158,Standing Hurdle,hamstrings,,,stretch,1,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-159,Wall Stretch,hamstrings,,,stretch,1,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
-160,Leg Swings,hamstrings,,,stretch,1,True,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+95,Side to Side Hops,cardio,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+28,Side Tri-Rises,triceps,,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/side_tri_rises.gif,60 sec.
+144,Side V-Up,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+37,Side-to-Side Push-Ups,chest,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/side_to_side_pushups.gif,60 sec.
+93,Single Leg Pogo Jump,cardio,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+118,Single Leg Wall Squat,legs,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+71,Single-leg Swing,legs,cardio,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/single_leg_swings.gif,60 sec.
+61,Sit Squat Jump,legs,cardio,N/A,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/sit_squat_jump.gif,30 sec.
+65,Skater Jump,cardio,legs,N/A,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/skater_jump.gif,30 sec.
+110,Slalom Line Jump,legs,cardio,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+30,Slow-Motion 3-in-1 Push-Ups,chest,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/3_in_1_slow_motion_pushups.gif,60 sec.
+107,Speed Walkout,core,cardio,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+75,Spider Mountain Climber,cardio,legs,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/spider_mountain_climbers.gif,60 sec.
+141,Spiderman Plank,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+62,Split Jump,legs,cardio,N/A,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,30 sec.
+67,Sprinter Skip,cardio,legs,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+157,Stagger Hand Push-Ups,chest,triceps,,upper,1,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+1,Standard Push-Ups,chest,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/standard_pushups.gif,60 sec.
+154,Standing Cross Knee,abs,,,core,1,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+23,Standing Curls,biceps,,pull,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/standing_bicep_curls.gif,8-10 reps
+158,Standing Hurdle,hamstrings,,,stretch,1,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+21,Static Arm Curls,biceps,,pull,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/static_arm_curls.mp4,8-10 reps
+116,Step-Back Lunges,legs,,,lower,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+55,Strip-Set Curls,biceps,,pull,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/strip_set_curls.mp4,8-10 reps
+66,Super Skater Jump,cardio,legs,N/A,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+54,Superman,back,,N/A,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/superman.gif,5 reps (10 secs each)
+29,Switch Grip pull Ups,back,biceps,pull,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,
+145,Switch Grip Pull Ups,back,biceps,pull,upper,1,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+103,T-Rotation,core,chest,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+114,Toe Tap 360,cardio,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+139,Tornado,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+25,Tricep Extensions,triceps,,push,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
+104,Tuck Jump,legs,cardio,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+45,Twenty-Ones,biceps,,pull,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/twenty_ones.mp4,21 reps
+140,Twist & Hold,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+35,Two Twitch Speed Push-Ups,chest,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/2_twitch_speed_pushups.gif,60 sec.
+16,Two-Arm Tricep Kickbacks,triceps,,push,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/two_arm_tricep_kickbacks.gif,8-10 reps
+20,Upright Rows,shoulders,,pull,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/upright_rows.gif,8-10 reps
+128,V-Up/Roll Up,abs,,,core,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+115,Wall Squat,legs,cardio,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+159,Wall Stretch,hamstrings,,,stretch,1,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+39,Weighted Circles,shoulders,,N/A,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/weighted_circles.gif,60 sec.
+5,Wide Fly Push-Ups,chest,triceps,push,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/exercise_demo_gif/wide_fly_pushups.gif,60 sec.
+2,Wide Front Pull-Ups,back,biceps,pull,upper,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+108,Wide Leg Tiptoe Squat,legs,,,lower,0,,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,60 sec.
+36,Y-Presses,shoulders,,push,upper,0,TRUE,,https://workouttoday.s3.us-east-2.amazonaws.com/standing_bicep_curls_weights.gif,8-10 reps
