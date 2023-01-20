@@ -27,7 +27,7 @@ def run_migrations(request):
                 exercise.difficulty_level = 0
                 if row['equipment'] != 'True':
                     exercise.equipment = False
-                if row['equipment'] == 'True':
+                if row['equipment'] == 'TRUE':
                     exercise.equipment = True
                 exercise.resistance_type = row['resistance_type']
                 exercise.quantity = row['quantity']
