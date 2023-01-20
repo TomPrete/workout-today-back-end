@@ -15,4 +15,5 @@ class GetExercises(View):
         pass
 
 def login(request):
-    return render(request, )
+    pass
+    # return render(request, )

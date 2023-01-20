@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.conf import settings
 from .models import Workout, Exercise, WorkoutExercise
 from django.http import HttpResponse
 import os
@@ -11,39 +12,42 @@ def run_migrations():
     with open(path, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            print(row['equipment'])
-            if row['equipment'] == 'False':
-                equipment_type = False
-            if row['equipment'] == 'True':
-                equipment_type = True
+            # if row['equipment'] == 'FALSE':
+            #     print(False)
+            #     equipment_type = False
+            # if row['equipment'] == 'TRUE':
+            #     print(True)
+            #     equipment_type = True
             try:
                 exercise = Exercise.objects.get(id=row['id'])
+                print(exercise)
                 exercise.muscle_target = row['muscle_target']
                 exercise.secondary_target = row['secondary_target']
                 exercise.muscle_group = row['muscle_group']
                 exercise.push_pull = row['push_pull']
                 exercise.difficulty_level = 0
-                if row['equipment'] == 'False':
+                if row['equipment'] == 'FALSE':
                     exercise.equipment = False
-                if row['equipment'] == 'True':
+                if row['equipment'] == 'TRUE':
                     exercise.equipment = True
                 exercise.resistance_type = row['resistance_type']
                 exercise.quantity = row['quantity']
                 exercise.demo_src = row['demo_src']
                 exercise.save()
             except:
-                Exercise.objects.create(
-                    name=row['name'],
-                    muscle_target=row['muscle_target'],
-                    secondary_target=row['secondary_target'],
-                    push_pull=row['push_pull'],
-                    muscle_group=row['muscle_group'],
-                    difficulty_level = 1,
-                    equipment = equipment_type,
-                    resistance_type = row['resistance_type'],
-                    quantity = row['quantity'],
-                    demo_src = row['demo_src']
-                    )
+                print("HERE")
+                # Exercise.objects.create(
+                #     name=row['name'],
+                #     muscle_target=row['muscle_target'],
+                #     secondary_target=row['secondary_target'],
+                #     push_pull=row['push_pull'],
+                #     muscle_group=row['muscle_group'],
+                #     difficulty_level = 1,
+                #     equipment = equipment_type,
+                #     resistance_type = row['resistance_type'],
+                #     quantity = row['quantity'],
+                #     demo_src = row['demo_src']
+                #     )
     print("Executed...")
     return True
 
@@ -57,7 +61,7 @@ def add_source_gif(request):
 
 
 def write_exercises_to_csv(request):
-    if request.method == 'POST':
+    if request.method == 'POST' and request.user.is_authenticated and request.user.is_staff:
         all_exercises_query = Exercise.objects.all()
         all_exercises = []
         for exercise in all_exercises_query:
@@ -79,7 +83,21 @@ def write_exercises_to_csv(request):
         return HttpResponse("Done")
 
     if request.method == "GET":
-        return render(request, 'admin/write_to_csv.html', {})
+        return render(request, 'staff/write_to_csv.html', {'type': "Write"})
+
+def download_exercise_csv(request):
+    if request.method == 'POST' and request.user.is_authenticated and request.user.is_staff:
+        file_path = os.path.join(settings.MEDIA_ROOT, path)
+        print("FILE PATH: ", file_path)
+        if os.path.exists(file_path):
+            with open(file_path, 'rb') as fh:
+                response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+                response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+                return response
+            raise Http404
+
+    if request.method == "GET":
+        return render(request, 'staff/write_to_csv.html', {'type': "Download"})
 
 def write_to_csv(exercise_arr):
     with open(path, 'w') as file:

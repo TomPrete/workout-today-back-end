@@ -3,7 +3,7 @@
 {% block content %}
   <form method="POST">
     {% csrf_token %}
-    <label for="abs">Write Exercises to CSV</label><br>
+    <label for="abs">{{ type }} Exercises to CSV</label><br>
     <button type='submit' class="button">Execute</button>
   </form>
 {% endblock %}
