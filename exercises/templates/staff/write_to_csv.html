@@ -3,7 +3,11 @@
 {% block content %}
   <form method="POST">
     {% csrf_token %}
-    <label for="abs">{{ type }} Exercises to CSV</label><br>
+    <label for="abs">{{ type }}</label><br>
+    <input type="radio" id="prod" value="production" name="csv-type">
+    <label for="prod">Production</label><br>
+    <input type="radio" id="local" value="local" name="csv-type">
+    <label for="local">Local</label>
     <button type='submit' class="button">Execute</button>
   </form>
 {% endblock %}

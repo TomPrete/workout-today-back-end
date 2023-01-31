@@ -42,11 +42,18 @@ class GetExercises(View):
         return render(request, 'exercises/exercise_list.html', {'exercise_list': exercise_list})
 
 def run_script(request):
-    if request.user.is_authenticated and request.user.is_staff:
-        run_migrations(request)
-        return HttpResponse("Completed")
-    else:
-        return HttpResponse("Unauthorized")
+    if request.method == "POST":
+        if request.user.is_authenticated and request.user.is_staff:
+            run_migrations(request)
+            return HttpResponse("Completed")
+        else:
+            return HttpResponse("Unauthorized")
+
+    if request.method == "GET":
+        if request.user.is_authenticated and request.user.is_staff:
+            return render(request, 'staff/write_to_csv.html', {'type': "Migrate CSV"})
+        else:
+            return HttpResponse("Unauthorized")
 
 def generate_workout(request):
     if request.method == "GET":

@@ -5,10 +5,11 @@ from django.http import HttpResponse
 import os
 import csv
 my_path = os.path.abspath(os.path.dirname(__file__))
-path = os.path.join(my_path, "exercises.csv")
 
 def run_migrations(request):
-    with open(path, newline='') as csvfile:
+    csv_type = request.POST.get('csv-type')
+    csv_path = os.path.join(my_path, f"exercises_{csv_type}.csv")
+    with open(csv_path, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             # if row['equipment'] == 'FALSE':
@@ -49,7 +50,9 @@ def add_source_gif(request):
 
 
 def write_exercises_to_csv(request):
+    csv_type = request.POST.get('csv-type')
     if request.method == 'POST' and request.user.is_authenticated and request.user.is_staff:
+        csv_path = os.path.join(my_path, f"exercises_{csv_type}.csv")
         all_exercises_query = Exercise.objects.all()
         all_exercises = []
         for exercise in all_exercises_query:
@@ -67,7 +70,7 @@ def write_exercises_to_csv(request):
                 "quantity": exercise.quantity
             }
             all_exercises.append(individual_exercise)
-        write_to_csv(all_exercises)
+        write_to_csv(all_exercises, csv_path)
         return HttpResponse("Done")
 
     if request.method == "GET":
@@ -87,7 +90,7 @@ def download_exercise_csv(request):
     if request.method == "GET":
         return render(request, 'staff/write_to_csv.html', {'type': "Download"})
 
-def write_to_csv(exercise_arr):
+def write_to_csv(exercise_arr, path):
     with open(path, 'w') as file:
         exercise_csv = csv.writer(file)
         exercise_csv.writerow(['id','name','muscle_target','secondary_target','push_pull','muscle_group','diffulty_level','equipment','resistance_type','demo_src','quantity'])

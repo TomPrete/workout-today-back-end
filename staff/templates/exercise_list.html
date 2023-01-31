@@ -37,7 +37,12 @@
         {% endif %}
         <td>{{ exercise.quantity }}</td>
         <td>{{ exercise.resistance_type }}</td>
-        <td><img src="{{ exercise.demo_src }}" alt="Here" width="30" /></td>
+        <td>
+            <video width="120" height="90" autoplay muted>
+              <source src="{{ exercise.demo_src }}" type="video/mp4">
+            </video>
+          <!-- <img src="{{ exercise.demo_src }}" alt="Here" width="30" /> -->
+        </td>
         <td><button type="button" class="btn btn-warning" data-toggle="modal"
             data-target="#modal-{{ exercise.id }}">Update</button></td>
       </tr>
