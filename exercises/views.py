@@ -69,7 +69,6 @@ def generate_workout(request):
         # a dictionary
         data = json.load(f)
         date_response = request.POST['date']
-
         split_date = date_response.split('-')
         current_date = date(int(split_date[0]),int(split_date[1]),int(split_date[2]))
         current_weekday = current_date.weekday()
@@ -155,20 +154,27 @@ def start_workout(request):
 def generate_daily_workout_cron():
     cron_logger = os.path.join(my_path, "cron/generate_workout.txt")
     us_east = pytz.timezone("America/New_York")
-    east_coast_time = datetime.now(us_east)
+    current_date_time = datetime.now(us_east)
+    current_date = date.today()
     try:
         f = open(path)
         # returns JSON object as
         # a dictionary
         data = json.load(f)
         # Gets current weekday
-        current_weekday = east_coast_time.weekday()
+        current_weekday = current_date.weekday()
         # Gets previous strength workout date
-        previous_strength_workout_date = east_coast_time - timedelta(days=2)
+        previous_strength_workout_date = current_date - timedelta(days=2)
         # Gets previous strength workout muscle target
         try:
-            previous_strength_workout_target = Workout.objects.get(workout_date=previous_strength_workout_date).exclude(workout_target='abs').workout_target.split('-')
-            # print(previous_strength_workout_target)
+            existing_workout =  Workout.objects.filter(workout_date=current_date).exclude(workout_target='abs')[0]
+            return HttpResponse(f'Workout already exists on this date {current_date}')
+        except:
+            existing_workout = None
+
+        previous_strength_workout_date = current_date - timedelta(days=2)
+        try:
+            previous_strength_workout_target = Workout.objects.filter(workout_date=previous_strength_workout_date).exclude(workout_target='abs')[0].workout_target.split('-')
         except:
             previous_strength_workout_target = random.choice(data[str(previous_workout_two_days_ago(current_weekday, 2))])['target']
         # Choices random muscle target
@@ -178,18 +184,20 @@ def generate_daily_workout_cron():
             choice = random.choice(data[str(current_weekday)])
         workout = get_exercises_for_workout(choice['target'])
         workout_target = "-".join(choice['target'])
-        new_workout = Workout.objects.create(workout_target=workout_target, workout_date=east_coast_time)
-        for order, exercise in enumerate(workout):
+
+        new_workout = Workout.objects.create(workout_target=workout_target, workout_date=current_date, total_rounds=workout['rounds'])
+        for order, exercise in enumerate(workout['exercise_list']):
             WorkoutExercise.objects.create(exercise=exercise, workout=new_workout, order=order+1)
         with open(cron_logger, 'a') as j:
-            j.write(f"Success: ${east_coast_time}\n")
+            j.write(f"Success: ${current_date_time}\n")
             j.close()
             return "Success"
     except:
         with open(cron_logger, 'a') as j:
-            j.write(f"Failure: ${east_coast_time}\n")
+            j.write(f"Failure: ${current_date_time}\n")
             j.close()
             return "Failure"
+
 
 class MoreWorkouts(APIView):
     authentication_classes = [JWTAuthentication]
