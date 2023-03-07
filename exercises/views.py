@@ -288,7 +288,7 @@ class Workouts(APIView):
             us_east = pytz.timezone("America/New_York")
             east_coast_time = datetime.now(us_east)
             ten_days = datetime.now(us_east) - timedelta(days=30)
-            workouts_query = Workout.objects.filter(workout_target=workout_type).order_by('-id')
+            workouts_query = Workout.objects.filter(workout_target=workout_type, workout_date__lte=east_coast_time).order_by('-id')
             # workouts_query = Workout.objects.filter(workout_date__range=(ten_days, east_coast_time), workout_target=workout_type).exclude(workout_target='abs').order_by('-id')
             workout_serializer = WorkoutSerializer(workouts_query, many=True)
             return JsonResponse(workout_serializer.data, safe=False)
