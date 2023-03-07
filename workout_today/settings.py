@@ -99,8 +99,7 @@ TEMPLATES = [
     },
 ]
 
-MAILCHIMP_API_KEY = '63e2c86da165db6c439e2259221a0049-us8'
-MAILCHIMP_REGION = 'us8'
+
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
