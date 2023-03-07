@@ -64,6 +64,9 @@ def generate_workout(request):
         return render(request, 'exercises/generate_workout.html', {'date_time': east_coast_time, 'last_workout_generate': Workout.objects.all().exclude(workout_target='abs').last(), 'workouts': workouts})
 
     if request.method == "POST" and request.user.is_authenticated and request.user.is_staff:
+        us_east = pytz.timezone("America/New_York")
+        east_coast_time = datetime.now(us_east)
+
         f = open(path)
         # returns JSON object as
         # a dictionary
@@ -104,7 +107,7 @@ def generate_workout(request):
             # print(new_workout)
             for order, exercise in enumerate(workout['exercise_list']):
                 WorkoutExercise.objects.create(exercise=exercise, workout=new_workout, order=order+1)
-            return JsonResponse(data = {'response': 'success'}, status=200)
+            return render(request, 'exercises/generate_workout.html', {'date_time': east_coast_time, 'last_workout_generate': Workout.objects.all().exclude(workout_target='abs').last(), 'workouts': Workout.objects.order_by('-workout_date')[:20]})
     else:
         return redirect('/staff/login')
 
